@@ -1,0 +1,24 @@
+{
+  "name": "My Personal Blog Page",
+  "version": "1.0.0",
+  "description": "My personal web page built with expressjs",
+  "author": "Sercan Ateş <104576153+sercanio@users.noreply.github.com>",
+  "keywords": [
+    "blog",
+    "express"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "./bin/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "pino": "^8.16.2",
+    "pino-http": "^8.5.1",
+    "pino-pretty": "^10.2.3",
+    "pug": "^3.0.2"
+  }
+}
