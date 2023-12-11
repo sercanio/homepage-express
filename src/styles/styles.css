@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .main {
+    @apply mt-8 mb-16 flex flex-col items-center justify-center;
+  }
+
+  .sitenavbar {
+    @apply bg-base-100;
+  }
+
+  .sitenavbar__container {
+    @apply w-[62rem] mx-auto;
+  }
+
+  .postcard,
+  .site-logo {
+    @apply w-[62rem] mx-auto;
+  }
+
+  .postcard-title,
+  .site-logo {
+    @apply link link-accent no-underline text-xl;
+  }
+
+  .site-logo {
+    @apply px-6 lg:px-8;
+  }
+
+  .post-date {
+    @apply text-sm;
+  }
+
+  .footer {
+    @apply p-4 bg-base-300 text-base-content;
+  }
+
+  .footer_container {
+    @apply w-[62rem] mx-auto px-8;
+  }
+}

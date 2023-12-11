@@ -1,0 +1,16 @@
+html
+  head
+    title= doctitle
+    link(rel="icon" type="image/png" href="/public/favicon.png")/
+    link(rel="stylesheet" href="/styles.css")
+
+    block scripts
+  body
+    header
+      div.navbar.sitenavbar
+        div.sitenavbar__container
+          a(href='/').site-logo sercan.io
+    block content
+    footer.footer
+      aside.footer_container
+        p Copyright © 2023 - All right reserved by ACME Industries Ltd

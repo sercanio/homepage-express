@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+  main.main
+    each post in posts
+      div.postcard
+        div.card.postcard
+          div.card-body
+            h2.card-title.postcard-title
+              a(href='/posts/'+post.slug)= post.title
+            p.card-content= post.content
+            a(href='/posts/'+post.slug).readmore Read More...
+            p= post.date
+    .join.pagination
+      button.join-item.btn.btn-active 1
+      button.join-item.btn 2
+      button.join-item.btn 3
+      button.join-item.btn 4
+    if posts.length === 0
+      p No posts available
+//-     <div class="join">
+//-   <button class="join-item btn">1</button>
+//-   <button class="join-item btn btn-active">2</button>
+//-   <button class="join-item btn">3</button>
+//-   <button class="join-item btn">4</button>
+//- </div>

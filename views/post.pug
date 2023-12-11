@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+  article(class="card max-w-[62rem] mx-auto")
+    div(class="card-body")
+      h1(class="card-title")= postTitle
+      p.post-date Published on #{postDate}
+      .divider
+      p= postContent

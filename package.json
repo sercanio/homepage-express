@@ -16,9 +16,16 @@
   "dependencies": {
     "express": "^4.18.2",
     "http-errors": "^2.0.0",
+    "mongoose": "^8.0.3",
     "pino": "^8.16.2",
     "pino-http": "^8.5.1",
     "pino-pretty": "^10.2.3",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "daisyui": "^4.4.19",
+    "npm-watch": "^0.9.0",
+    "tailwindcss": "^3.3.6",
+    "uglifycss": "^0.0.29"
   }
 }
