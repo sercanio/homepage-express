@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+  body{
+    @apply flex flex-col justify-center items-center;
+  }
+}
+
 @layer components {
   .main {
-    @apply mt-8 mb-16 flex flex-col items-center justify-center;
+    @apply my-4 flex-[100%] flex flex-col;
   }
 
   .sitenavbar {
@@ -15,22 +21,35 @@
     @apply w-[62rem] mx-auto;
   }
 
+  .pagination {
+    @apply w-fit mx-auto mt-2 mb-12;
+  }
+
   .postcard,
   .site-logo {
     @apply w-[62rem] mx-auto;
   }
 
   .postcard-title,
-  .site-logo {
-    @apply link link-accent no-underline text-xl;
+  .site-logo,
+  .readmore {
+    @apply link link-primary no-underline text-xl;
+  }
+
+  .card-title {
+    @apply text-primary;
   }
 
   .site-logo {
-    @apply px-6 lg:px-8;
+    @apply px-6 lg:px-8  font-semibold;
   }
 
   .post-date {
     @apply text-sm;
+  }
+
+  .readmore {
+    @apply link-secondary text-base;
   }
 
   .footer {

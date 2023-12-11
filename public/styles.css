@@ -503,17 +503,18 @@ html {
 }
 
 :root {
-  color-scheme: light;
-  --in: 0.7206 0.191 231.6;
-  --su: 64.8% 0.150 160;
-  --wa: 0.8471 0.199 83.87;
-  --er: 0.7176 0.221 22.18;
-  --pc: 0.89824 0.06192 275.75;
-  --ac: 0.15352 0.0368 183.61;
-  --inc: 0 0 0;
-  --suc: 0 0 0;
-  --wac: 0 0 0;
-  --erc: 0 0 0;
+  --p: 0.587617 0.138868 241.966052;
+  --b2: 0.885401 0.033449 318.851883;
+  --b3: 0.818758 0.030931 318.851883;
+  --bc: 0.190409 0.007193 318.851883;
+  --pc: 0.117523 0.027774 241.966052;
+  --sc: 0.918294 0.051375 322.896116;
+  --ac: 0.15706 0.020827 274.71343;
+  --nc: 0.188273 0.005956 12.580498;
+  --inc: 0.142967 0.025147 215.220903;
+  --suc: 0.90546 0.027421 150.069279;
+  --wac: 0.159049 0.032334 86.046788;
+  --erc: 0.906445 0.028106 131.588653;
   --rounded-box: 1rem;
   --rounded-btn: 0.5rem;
   --rounded-badge: 1.9rem;
@@ -523,32 +524,30 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
-  --p: 0.4912 0.3096 275.75;
-  --s: 0.6971 0.329 342.55;
-  --sc: 0.9871 0.0106 342.55;
-  --a: 0.7676 0.184 183.61;
-  --n: 0.321785 0.02476 255.701624;
-  --nc: 0.894994 0.011585 252.096176;
-  --b1: 1 0 0;
-  --b2: 0.961151 0 0;
-  --b3: 0.924169 0.00108 197.137559;
-  --bc: 0.278078 0.029596 256.847952;
+  --s: 0.591472 0.256876 322.896116;
+  --a: 0.785298 0.104135 274.71343;
+  --n: 0.941366 0.029778 12.580498;
+  --b1: 0.952045 0.035966 318.851883;
+  --in: 0.714837 0.125737 215.220903;
+  --su: 0.527299 0.137103 150.069279;
+  --wa: 0.795243 0.161668 86.046788;
+  --er: 0.532223 0.14053 131.588653;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color-scheme: dark;
-    --in: 0.7206 0.191 231.6;
-    --su: 64.8% 0.150 160;
-    --wa: 0.8471 0.199 83.87;
-    --er: 0.7176 0.221 22.18;
-    --pc: 0.13138 0.0392 275.75;
-    --sc: 0.1496 0.052 342.55;
-    --ac: 0.14902 0.0334 183.61;
-    --inc: 0 0 0;
-    --suc: 0 0 0;
-    --wac: 0 0 0;
-    --erc: 0 0 0;
+    --p: 0.739328 0.109873 279.302777;
+    --b2: 0.230324 0.031638 252.666127;
+    --b3: 0.212988 0.029257 252.666127;
+    --bc: 0.849532 0.006804 252.666127;
+    --pc: 0.147866 0.021975 279.302777;
+    --sc: 0.149283 0.025486 338.568663;
+    --ac: 0.15706 0.020827 274.71343;
+    --nc: 0.855616 0.005919 256.847952;
+    --inc: 0.142967 0.025147 215.220903;
+    --suc: 0.90546 0.027421 150.069279;
+    --wac: 0.159049 0.032334 86.046788;
+    --erc: 0.125859 0.051267 29.17085;
     --rounded-box: 1rem;
     --rounded-btn: 0.5rem;
     --rounded-badge: 1.9rem;
@@ -558,30 +557,30 @@ html {
     --border-btn: 1px;
     --tab-border: 1px;
     --tab-radius: 0.5rem;
-    --p: 0.6569 0.196 275.75;
-    --s: 0.748 0.26 342.55;
-    --a: 0.7451 0.167 183.61;
-    --n: 0.313815 0.021108 254.139175;
-    --nc: 0.746477 0.0216 264.435964;
-    --b1: 0.253267 0.015896 252.417568;
-    --b2: 0.232607 0.013807 253.100675;
-    --b3: 0.211484 0.01165 254.087939;
-    --bc: 0.746477 0.0216 264.435964;
+    --s: 0.746413 0.127432 338.568663;
+    --a: 0.785298 0.104135 274.71343;
+    --n: 0.278078 0.029596 256.847952;
+    --b1: 0.247661 0.03402 252.666127;
+    --in: 0.714837 0.125737 215.220903;
+    --su: 0.527299 0.137103 150.069279;
+    --wa: 0.795243 0.161668 86.046788;
+    --er: 0.629294 0.256337 29.17085;
   }
 }
 
 [data-theme=light] {
-  color-scheme: light;
-  --in: 0.7206 0.191 231.6;
-  --su: 64.8% 0.150 160;
-  --wa: 0.8471 0.199 83.87;
-  --er: 0.7176 0.221 22.18;
-  --pc: 0.89824 0.06192 275.75;
-  --ac: 0.15352 0.0368 183.61;
-  --inc: 0 0 0;
-  --suc: 0 0 0;
-  --wac: 0 0 0;
-  --erc: 0 0 0;
+  --p: 0.587617 0.138868 241.966052;
+  --b2: 0.885401 0.033449 318.851883;
+  --b3: 0.818758 0.030931 318.851883;
+  --bc: 0.190409 0.007193 318.851883;
+  --pc: 0.117523 0.027774 241.966052;
+  --sc: 0.918294 0.051375 322.896116;
+  --ac: 0.15706 0.020827 274.71343;
+  --nc: 0.188273 0.005956 12.580498;
+  --inc: 0.142967 0.025147 215.220903;
+  --suc: 0.90546 0.027421 150.069279;
+  --wac: 0.159049 0.032334 86.046788;
+  --erc: 0.906445 0.028106 131.588653;
   --rounded-box: 1rem;
   --rounded-btn: 0.5rem;
   --rounded-badge: 1.9rem;
@@ -591,31 +590,29 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
-  --p: 0.4912 0.3096 275.75;
-  --s: 0.6971 0.329 342.55;
-  --sc: 0.9871 0.0106 342.55;
-  --a: 0.7676 0.184 183.61;
-  --n: 0.321785 0.02476 255.701624;
-  --nc: 0.894994 0.011585 252.096176;
-  --b1: 1 0 0;
-  --b2: 0.961151 0 0;
-  --b3: 0.924169 0.00108 197.137559;
-  --bc: 0.278078 0.029596 256.847952;
+  --s: 0.591472 0.256876 322.896116;
+  --a: 0.785298 0.104135 274.71343;
+  --n: 0.941366 0.029778 12.580498;
+  --b1: 0.952045 0.035966 318.851883;
+  --in: 0.714837 0.125737 215.220903;
+  --su: 0.527299 0.137103 150.069279;
+  --wa: 0.795243 0.161668 86.046788;
+  --er: 0.532223 0.14053 131.588653;
 }
 
 [data-theme=dark] {
-  color-scheme: dark;
-  --in: 0.7206 0.191 231.6;
-  --su: 64.8% 0.150 160;
-  --wa: 0.8471 0.199 83.87;
-  --er: 0.7176 0.221 22.18;
-  --pc: 0.13138 0.0392 275.75;
-  --sc: 0.1496 0.052 342.55;
-  --ac: 0.14902 0.0334 183.61;
-  --inc: 0 0 0;
-  --suc: 0 0 0;
-  --wac: 0 0 0;
-  --erc: 0 0 0;
+  --p: 0.739328 0.109873 279.302777;
+  --b2: 0.230324 0.031638 252.666127;
+  --b3: 0.212988 0.029257 252.666127;
+  --bc: 0.849532 0.006804 252.666127;
+  --pc: 0.147866 0.021975 279.302777;
+  --sc: 0.149283 0.025486 338.568663;
+  --ac: 0.15706 0.020827 274.71343;
+  --nc: 0.855616 0.005919 256.847952;
+  --inc: 0.142967 0.025147 215.220903;
+  --suc: 0.90546 0.027421 150.069279;
+  --wac: 0.159049 0.032334 86.046788;
+  --erc: 0.125859 0.051267 29.17085;
   --rounded-box: 1rem;
   --rounded-btn: 0.5rem;
   --rounded-badge: 1.9rem;
@@ -625,15 +622,21 @@ html {
   --border-btn: 1px;
   --tab-border: 1px;
   --tab-radius: 0.5rem;
-  --p: 0.6569 0.196 275.75;
-  --s: 0.748 0.26 342.55;
-  --a: 0.7451 0.167 183.61;
-  --n: 0.313815 0.021108 254.139175;
-  --nc: 0.746477 0.0216 264.435964;
-  --b1: 0.253267 0.015896 252.417568;
-  --b2: 0.232607 0.013807 253.100675;
-  --b3: 0.211484 0.01165 254.087939;
-  --bc: 0.746477 0.0216 264.435964;
+  --s: 0.746413 0.127432 338.568663;
+  --a: 0.785298 0.104135 274.71343;
+  --n: 0.278078 0.029596 256.847952;
+  --b1: 0.247661 0.03402 252.666127;
+  --in: 0.714837 0.125737 215.220903;
+  --su: 0.527299 0.137103 150.069279;
+  --wa: 0.795243 0.161668 86.046788;
+  --er: 0.629294 0.256337 29.17085;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 *, ::before, ::after {
@@ -1481,12 +1484,11 @@ html {
 }
 
 .main {
-  margin-top: 2rem;
-  margin-bottom: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
+  flex: 100%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .sitenavbar {
@@ -1500,6 +1502,15 @@ html {
   width: 62rem;
 }
 
+.pagination {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .postcard,
   .site-logo {
   margin-left: auto;
@@ -1508,48 +1519,55 @@ html {
 }
 
 .postcard-title,
-  .site-logo {
+  .site-logo,
+  .readmore {
   cursor: pointer;
   text-decoration-line: underline;
+  --tw-text-opacity: 1;
+  color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
 }
 
 @supports (color:color-mix(in oklab,black,black)) {
   @media (hover:hover) {
     .postcard-title:hover,
-  .site-logo:hover {
-      color: color-mix(in oklab,var(--fallback-a,oklch(var(--a)/1)) 80%,black);
+  .site-logo:hover,
+  .readmore:hover {
+      color: color-mix(in oklab,var(--fallback-p,oklch(var(--p)/1)) 80%,black);
     }
   }
 }
 
-.postcard-title,
-  .site-logo {
-  --tw-text-opacity: 1;
-  color: var(--fallback-a,oklch(var(--a)/var(--tw-text-opacity)));
-}
-
 .postcard-title:focus,
-  .site-logo:focus {
+  .site-logo:focus,
+  .readmore:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
 .postcard-title:focus-visible,
-  .site-logo:focus-visible {
+  .site-logo:focus-visible,
+  .readmore:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
 .postcard-title,
-  .site-logo {
+  .site-logo,
+  .readmore {
   font-size: 1.25rem;
   line-height: 1.75rem;
   text-decoration-line: none;
 }
 
+.card-title {
+  --tw-text-opacity: 1;
+  color: var(--fallback-p,oklch(var(--p)/var(--tw-text-opacity)));
+}
+
 .site-logo {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  font-weight: 600;
 }
 
 @media (min-width: 1024px) {
@@ -1562,6 +1580,21 @@ html {
 .post-date {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+@supports (color:color-mix(in oklab,black,black)) {
+  @media (hover:hover) {
+    .readmore:hover {
+      color: color-mix(in oklab,var(--fallback-s,oklch(var(--s)/1)) 80%,black);
+    }
+  }
+}
+
+.readmore {
+  --tw-text-opacity: 1;
+  color: var(--fallback-s,oklch(var(--s)/var(--tw-text-opacity)));
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .footer {
