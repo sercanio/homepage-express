@@ -1,6 +1,6 @@
 'use strict';
 const mongoose = require('mongoose');
-const PostModel = require('./Model/Post');
+const PostModel = require('./models/Post');
 const slugify = require('./src/lib/slugify');
 
 module.exports = function (app, opts) {
