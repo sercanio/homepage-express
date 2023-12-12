@@ -15,6 +15,6 @@ block content
     .join.pagination
       each page in Array(totalPages).fill().map((_, index) => index + 1)
         if page === currentPage
-          a(href=`/?page=${page}`).btn.join-item.btn-active= page
+          a(href=`/?page=${page}`).btn.btn-primary.join-item.btn-active= page
         else
-          a(href=`/?page=${page}`).btn.join-item= page
+          a(href=`/?page=${page}`).btn.btn-secondary.join-item= page
