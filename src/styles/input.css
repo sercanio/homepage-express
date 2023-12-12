@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --b1: 1 0 0;
+    --b2: 0.961151 0 0;
+  }
+
   html,
   body {
     @apply min-h-screen;
   }
+
   body {
     @apply flex flex-col justify-center items-center;
   }
@@ -37,6 +43,14 @@
     @apply flex justify-between items-center w-full;
   }
 
+  .aboutme {
+    @apply mt-12;
+  }
+
+  .timeline {
+    @apply h-fit py-4;
+  }
+
   .pagination {
     @apply w-fit mx-auto mt-2 mb-12;
   }
@@ -65,11 +79,15 @@
   }
 
   .nav-link {
-    @apply text-lg;
+    @apply text-lg mr-2;
   }
 
   .post-date {
     @apply text-sm;
+  }
+
+  .timeline {
+    @apply bg-pattern;
   }
 
   .footer {
@@ -84,5 +102,16 @@
 @layer utilities {
   .page-width {
     @apply max-w-[54rem];
+  }
+
+  .bg-pattern {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--fallback-b1, oklch(var(--b1))),
+      var(--fallback-b1, oklch(var(--b1))) 13px,
+      var(--fallback-b2, oklch(var(--b2))) 13px,
+      var(--fallback-b2, oklch(var(--b2))) 14px
+    );
+    background-size: 40px 40px;
   }
 }
