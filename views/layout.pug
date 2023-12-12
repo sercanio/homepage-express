@@ -1,12 +1,15 @@
-html
+doctype html
+html(lang="en")
   head
     title= doctitle
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="My personal web logs about technology.")
     link(rel="icon" type="image/png" href="/public/favicon.png")/
     link(rel="stylesheet" href="/styles.css")
 
     block scripts
   body
-    header
+    header.siteheader
       div.navbar.sitenavbar
         div.sitenavbar__container
           a(href='/').site-logo sercan.io

@@ -8,11 +8,13 @@ block content
           div.card-body
             h2.card-title.postcard-title
               a(href='/posts/'+post.slug)= post.title
-            p.card-content!= post.content
+            p.card-content= post.content
             a(href='/posts/'+post.slug).readmore Read More...
             p.post-date= post.date
-  .join.pagination
-    button.join-item.btn.btn-active 1
-    button.join-item.btn 2
-    button.join-item.btn 3
-    button.join-item.btn 4
+  if totalPages > 1
+    .join.pagination
+      each page in Array(totalPages).fill().map((_, index) => index + 1)
+        if page === currentPage
+          a(href=`/?page=${page}`).btn.join-item.btn-active= page
+        else
+          a(href=`/?page=${page}`).btn.join-item= page

@@ -5,13 +5,15 @@ const slugify = require('./src/lib/slugify');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
+    const postsPerPage = 5
     try {
-      // Fetch all posts from the database
-      const postsInDB = await PostModel.find();
+      const page = parseInt(req.query.page) || 1;
+      const skip = (page - 1) * postsPerPage;
 
-      // Adjust the content of each post to include only the first 50 characters
+      const postsInDB = await PostModel.find().skip(skip).limit(postsPerPage);
+
       const allPosts = postsInDB.map((post) => ({
-        ...post.toObject(), // Assuming `post` is a Mongoose document, use `toObject` to convert it to a plain JavaScript object
+        ...post.toObject(),
         content: post.content.slice(0, 250),
         date: post.date.toLocaleDateString('en-US', {
           year: 'numeric',
@@ -20,18 +22,23 @@ module.exports = function (app, opts) {
         }),
       }));
 
-      // Render a view to display all posts (adjust the view name as needed)
-      res.render('index', { posts: allPosts });
+      const totalPosts = await PostModel.countDocuments();
+      const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+      res.render('index', {
+        posts: allPosts,
+        currentPage: page,
+        totalPages,
+        doctitle: "Sercan Ateş | Web Logs",
+      });
     } catch (error) {
-      // Handle any errors
-      console.error(error); // Log the error
+      console.error(error);
       res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
   });
 
   app.post('/posts/create', async (req, res, next) => {
     try {
-      // Validate the presence of required fields
       if (!req.body.title || !req.body.content) {
         return res.status(400).json({
           success: false,
@@ -39,7 +46,6 @@ module.exports = function (app, opts) {
         });
       }
       const slug = slugify(req.body.title);
-      // Create postData object
       const postData = {
         title: req.body.title,
         slug: slug,
@@ -47,7 +53,6 @@ module.exports = function (app, opts) {
         content: req.body.content,
       };
 
-      // Set date if provided, otherwise use current date
       postData.date = req.body.date || Date.now();
 
       const newPost = new PostModel(postData);
@@ -72,20 +77,17 @@ module.exports = function (app, opts) {
       };
 
       if (!post) {
-        // Handle the case where the post is not found
         res.status(404).send('Post not found');
         return;
       }
 
-      // Render the 'post' view using layout.pug as the layout
       res.render('post', {
-        doctitle: post.title, // Set the title for layout.pug
+        doctitle: post.title,
         postTitle: post.title,
         postDate: post.date,
         postContent: post.content,
       });
     } catch (error) {
-      // Handle any errors that occur during the query
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
