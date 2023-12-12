@@ -5,7 +5,7 @@ const slugify = require('./src/lib/slugify');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
-    const postsPerPage = 5
+    const postsPerPage = 5;
     try {
       const page = parseInt(req.query.page) || 1;
       const skip = (page - 1) * postsPerPage;
@@ -29,7 +29,7 @@ module.exports = function (app, opts) {
         posts: allPosts,
         currentPage: page,
         totalPages,
-        doctitle: "Sercan Ateş | Web Logs",
+        doctitle: 'Sercan Ateş | Web Logs',
       });
     } catch (error) {
       console.error(error);
@@ -91,5 +91,11 @@ module.exports = function (app, opts) {
       console.error(error);
       res.status(500).send('Internal Server Error');
     }
+  });
+
+  app.get('/me', (req, res) => {
+    res.render('me', {
+      doctitle: 'About Me',
+    });
   });
 };
