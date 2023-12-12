@@ -2,9 +2,9 @@ extends layout.pug
 
 block content
   main.main
-    article(class="card max-w-[62rem] mx-auto")
+    article.card
       div(class="card-body")
-        h1(class="card-title")= postTitle
-        p.post-date Published on #{postDate}
+        h1.card-title= postTitle
+        p.post-date published on #{postDate.toLowerCase()}
         .divider
         !=postContent

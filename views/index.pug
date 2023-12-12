@@ -9,8 +9,8 @@ block content
             h2.card-title.postcard-title
               a(href='/posts/'+post.slug)= post.title
             p.card-content= post.content
-            a(href='/posts/'+post.slug).readmore Read More...
-            p.post-date= post.date
+            a(href='/posts/'+post.slug).readmore read more...
+            p.post-date= post.date.toLowerCase()
   if totalPages > 1
     .join.pagination
       each page in Array(totalPages).fill().map((_, index) => index + 1)
