@@ -8,7 +8,7 @@ block content
           div.card-body
             h2.card-title.postcard-title
               a(href='/posts/'+post.slug)= post.title
-            p.card-content= post.content
+            p.card-content!= post.content
             a(href='/posts/'+post.slug).readmore Read More...
             p.post-date= post.date
   .join.pagination
