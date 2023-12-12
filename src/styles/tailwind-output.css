@@ -1805,6 +1805,10 @@ body {
   margin-top: 3rem;
 }
 
+.aboutme-title {
+  cursor: default !important;
+}
+
 .timeline {
   height: -moz-fit-content;
   height: fit-content;

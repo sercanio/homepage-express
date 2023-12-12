@@ -52,6 +52,10 @@
     @apply mt-12;
   }
 
+  .aboutme-title {
+    @apply cursor-default !important;
+  }
+
   .timeline {
     @apply h-fit py-4;
   }
