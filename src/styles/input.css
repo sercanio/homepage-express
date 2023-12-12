@@ -10,17 +10,23 @@
 
 @layer components {
   .main {
-    @apply my-4 flex-[100%] flex flex-col;
+    @apply my-1 md:my-4 flex-[100%] flex flex-col;
   }
-  .card-body{
+
+  .card-body {
     @apply px-4;
   }
+
   .siteheader {
     @apply w-full max-w-[62rem];
   }
 
   .sitenavbar {
     @apply bg-base-100;
+  }
+
+  .sitenavbar__container {
+    @apply flex justify-between items-center w-full;
   }
 
   .pagination {
@@ -33,7 +39,8 @@
 
   .postcard-title,
   .site-logo,
-  .readmore {
+  .readmore,
+  .nav-link {
     @apply link link-primary no-underline text-xl;
   }
 
@@ -42,19 +49,23 @@
   }
 
   .site-logo {
-    @apply px-4 font-semibold;
+    @apply px-2 font-semibold;
+  }
+
+  .readmore {
+    @apply w-fit text-base;
+  }
+
+  .nav-link{
+    @apply text-lg;
   }
 
   .post-date {
     @apply text-sm;
   }
 
-  .readmore {
-    @apply text-base;
-  }
-
   .footer {
-    @apply w-full p-4 bg-base-300 text-base-content;
+    @apply w-full p-4 bg-secondary text-base-content;
   }
 
   .footer_container {

@@ -1,19 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['views/**/*.pug'],
+  purge: {
+    enabled: true,
+    content: ['views/**/*.pug'],
+  },
   theme: {
     extend: {},
+  },
+  corePlugins: {
+    // preflight: false,
   },
   plugins: [require('daisyui')],
   daisyui: {
     themes: [
       {
         light: {
-          primary: '#0151ff',
-          secondary: '#9c4bfe',
+          primary: '#214145',
+          secondary: '#c7e7df',
           accent: '#2138fe',
           neutral: '#f7cedc',
-          'base-100': '#faebff',
+          'base-100': '#fffefd',
+          'base-200': '#f4f2f1',
           info: '#00a9e0',
           success: '#188044',
           warning: '#ffa908',
