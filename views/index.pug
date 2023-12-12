@@ -10,10 +10,10 @@ block content
           p.card-content= post.content
           a(href='/posts/'+post.slug).readmore read more...
           p.post-date= post.date.toLowerCase()
-  if totalPages > 1
-    .join.pagination
-      each page in Array(totalPages).fill().map((_, index) => index + 1)
-        if page === currentPage
-          a(href=`/?page=${page}`).btn.btn-primary.join-item.btn-active= page
-        else
-          a(href=`/?page=${page}`).btn.btn-secondary.join-item= page
+    if totalPages > 1
+      .join.pagination
+        each page in Array(totalPages).fill().map((_, index) => index + 1)
+          if page === currentPage
+            a(href=`/?page=${page}`).btn.btn-primary.join-item.btn-active= page
+          else
+            a(href=`/?page=${page}`).btn.btn-secondary.join-item= page
