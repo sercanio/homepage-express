@@ -3,14 +3,13 @@ extends layout.pug
 block content
   main.main
     each post in posts
-      div.postcard
-        div.card.postcard
-          div.card-body
-            h2.card-title.postcard-title
-              a(href='/posts/'+post.slug)= post.title
-            p.card-content= post.content
-            a(href='/posts/'+post.slug).readmore read more...
-            p.post-date= post.date.toLowerCase()
+      div.card.postcard
+        div.card-body
+          h2.card-title.postcard-title
+            a(href='/posts/'+post.slug)= post.title
+          p.card-content= post.content
+          a(href='/posts/'+post.slug).readmore read more...
+          p.post-date= post.date.toLowerCase()
   if totalPages > 1
     .join.pagination
       each page in Array(totalPages).fill().map((_, index) => index + 1)

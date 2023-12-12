@@ -534,6 +534,7 @@ html {
   --er: 0.540721 0.134723 128.912947;
   --b1: 1 0 0;
   --b2: 0.961151 0 0;
+  --padding-card: 1.25rem;
 }
 
 html,
@@ -1754,8 +1755,8 @@ body {
 }
 
 .main {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   height: 100%;
   flex-grow: 1;
@@ -1764,8 +1765,8 @@ body {
 
 @media (min-width: 768px) {
   .main {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
 }
 
@@ -1793,6 +1794,11 @@ body {
   width: 100%;
   align-items: center;
   justify-content: space-between;
+}
+
+.divider {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .aboutme {
