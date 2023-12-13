@@ -103,7 +103,7 @@
     @apply w-full p-4 bg-secondary text-base-content;
   }
 
-  .footer_container {
+  .footer__container {
     @apply page-width mx-auto px-4;
   }
 }
