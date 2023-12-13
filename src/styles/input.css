@@ -42,14 +42,16 @@ a {
   --bg-primary: #fffefd;
   --bg-secondary: #c7e7df;
   --text-primary: #131a22;
-  --text-secondary: #455c64;
+  --text-secondary: #435852;
+  --text-hover-secondary: #627163;
   --border-primary: #9d9a8480;
 
   /* Dark theme */
   --bg-primary-dark: #131a22;
   --bg-secondary-dark: #697673;
   --text-primary-dark: #d1d5db;
-  --text-secondary-dark: #c1c5cb;
+  --text-secondary-dark: #969d95;
+  --text-hover-secondary-dark: #829ba3;
 }
 
 /* Utilites */
@@ -126,10 +128,16 @@ a {
 .pagination-item {
   margin: 0 0.25rem;
   padding: 0.25rem 0.5rem;
+  transition: all .015s linear;
 }
 
-.pagination-item--active {
-  color: var(--text-secondary-dark);
+.pagination-item:hover {
+  background-color: var(--text-secondary-dark);
+}
+
+.pagination-item--active,
+.pagination-item--active:hover {
+  color: var(--text-primary-dark);
   background-color: var(--bg-primary-dark);
 }
 
@@ -166,6 +174,10 @@ a {
   font-weight: normal;
 }
 
+.postcard__title:hover {
+  color: var(--text-hover-secondary);
+}
+
 .site-logo {
   padding: 0 0.5rem;
   font-weight: bold;
@@ -190,12 +202,21 @@ a {
     color: var(--text-primary-dark);
   }
 
-  .pagination-item--active {
-    color: var(--text-primary);
-    background-color: var(--bg-secondary);
+  .postcard__title:hover {
+    color: var(--text-hover-secondary-dark);
   }
 
   .postcard__date {
     color: var(--text-secondary-dark);
+  }
+
+  .pagination-item:hover {
+    background-color: var(--text-secondary);
+  }
+
+  .pagination-item--active,
+  .pagination-item--active:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
   }
 }
