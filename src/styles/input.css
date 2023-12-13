@@ -37,7 +37,7 @@
   }
 
   .sitenavbar {
-    @apply bg-base-100;
+    @apply bg-inherit;
   }
 
   .sitenavbar__container {
