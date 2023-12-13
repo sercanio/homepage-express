@@ -37,7 +37,7 @@ module.exports = function (app, opts) {
     }
   });
 
-  app.post('/posts/create', async (req, res, next) => {
+  app.post('/post/create', async (req, res, next) => {
     try {
       if (!req.body.title || !req.body.content) {
         return res.status(400).json({
@@ -64,7 +64,7 @@ module.exports = function (app, opts) {
     }
   });
 
-  app.get('/posts/:slug', async (req, res) => {
+  app.get('/post/:slug', async (req, res) => {
     try {
       const postInDB = await PostModel.findOne({ slug: req.params.slug });
       const post = {
@@ -86,6 +86,7 @@ module.exports = function (app, opts) {
         postTitle: post.title,
         postDate: post.date,
         postContent: post.content,
+        postSlug: post.slug,
       });
     } catch (error) {
       console.error(error);

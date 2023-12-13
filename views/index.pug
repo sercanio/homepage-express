@@ -6,9 +6,9 @@ block content
       div.card.postcard
         div.card-body
           h2.card-title.postcard-title
-            a(href='/posts/'+post.slug)= post.title
+            a(href='/post/'+post.slug)= post.title
           p.card-content= post.content
-          a(href='/posts/'+post.slug).readmore read more...
+          a(href='/post/'+post.slug).readmore read more...
           p.post-date= post.date.toLowerCase()
     if totalPages > 1
       .join.pagination
