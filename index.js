@@ -80,6 +80,12 @@ module.exports = async function main(options, cb) {
   // better because it works out of the box even in local development.
   require('./routes')(app, opts);
 
+  // TinyMCE integration
+  app.use(
+    '/tinymce',
+    express.static(path.join(__dirname, 'node_modules', 'tinymce'))
+  );
+
   // Common error handlers
   app.use(function fourOhFourHandler(req, res, next) {
     next(httpErrors(404, `Route not found: ${req.url}`));

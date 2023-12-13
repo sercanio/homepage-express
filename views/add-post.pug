@@ -1,14 +1,9 @@
 extends layout.pug
 
-block meta
-  meta(property="og:title" content="sercan ateş")
-  meta(property="og:description" content="personal web logs")
-  meta(property="og:url" content="https://sercan.io")
-  meta(property="og:image" content="")
-  meta(name="twitter:title" content="sercan ateş")
-  meta(name="twitter:description" content="personal web logs")
-  meta(name="twitter:image" content="")
-  meta(name="twitter:card" content="summary_large_image")
-
 block content
   main.main
+    textarea(id="tinymce-editor")
+
+  block script
+    script(type="application/javascript" src="/tinymce/tinymce.min.js")
+    script(type="application/javascript" src="/js/tinymce-config.js")
