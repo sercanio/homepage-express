@@ -29,7 +29,7 @@ module.exports = function (app, opts) {
         posts: allPosts,
         currentPage: page,
         totalPages,
-        doctitle: 'Sercan Ateş | Web Logs',
+        doctitle: 'sercan ateş | web logs',
       });
     } catch (error) {
       console.error(error);
@@ -96,7 +96,7 @@ module.exports = function (app, opts) {
 
   app.get('/me', (req, res) => {
     res.render('me', {
-      doctitle: 'About Me',
+      doctitle: 'about me',
     });
   });
 };
