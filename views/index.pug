@@ -12,10 +12,10 @@ block meta
 
 block content
   main.main
-    section.posts
+    section(style=`height: ${posts.length * 3}rem;`).posts
       .postcard__date-list
         each post in posts
-          a(href='/post/'+post.slug)
+          a(href=`/post/${post.slug}` title=`Published on ${post.date}`)
             .postcard__date= post.date.toLowerCase()
       .vertical-line
       .posts-list
@@ -23,7 +23,7 @@ block content
           div.postcard
             div.postcard__body
               h2.postcard__title
-                a(href='/post/'+post.slug)= post.title
+                a(href=`/post/${post.slug}` title=`Read`)= post.title
     if totalPages > 1
       .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)

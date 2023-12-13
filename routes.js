@@ -5,7 +5,7 @@ const slugify = require('./src/lib/slugify');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
-    const postsPerPage = 5;
+    const postsPerPage = 8;
     try {
       const page = parseInt(req.query.page) || 1;
       const skip = (page - 1) * postsPerPage;
