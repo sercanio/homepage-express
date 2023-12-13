@@ -37,32 +37,39 @@ module.exports = function (app, opts) {
     }
   });
 
-  app.post('/post/create', async (req, res, next) => {
-    try {
-      if (!req.body.title || !req.body.content) {
-        return res.status(400).json({
-          success: false,
-          error: 'Title and content are required fields.',
-        });
+  app
+    .route('/post/add')
+    .get(async (req, res, next) => {
+      res.render('add-post', {
+        doctitle: 'add new post',
+      });
+    })
+    .post(async (req, res, next) => {
+      try {
+        if (!req.body.title || !req.body.content) {
+          return res.status(400).json({
+            success: false,
+            error: 'Title and content are required fields.',
+          });
+        }
+        const slug = slugify(req.body.title);
+        const postData = {
+          title: req.body.title,
+          slug: slug,
+          tags: req.body.tags,
+          content: req.body.content,
+        };
+
+        postData.date = req.body.date || Date.now();
+
+        const newPost = new PostModel(postData);
+        await newPost.save();
+
+        res.json({ success: true, post: newPost });
+      } catch (error) {
+        next(error);
       }
-      const slug = slugify(req.body.title);
-      const postData = {
-        title: req.body.title,
-        slug: slug,
-        tags: req.body.tags,
-        content: req.body.content,
-      };
-
-      postData.date = req.body.date || Date.now();
-
-      const newPost = new PostModel(postData);
-      await newPost.save();
-
-      res.json({ success: true, post: newPost });
-    } catch (error) {
-      next(error);
-    }
-  });
+    });
 
   app.get('/post/:slug', async (req, res) => {
     try {
