@@ -1,8 +1,8 @@
 extends layout.pug
 
 block meta
-  meta(property="og:title", content="sercan ateş")
-  meta(property="og:description", content="personal web logs")
+  meta(property="og:title" content="sercan ateş")
+  meta(property="og:description" content="personal web logs")
   meta(property="og:url" content="https://sercan.io")
   meta(property="og:image" content="")
   meta(name="twitter:title" content="sercan ateş")
@@ -12,18 +12,22 @@ block meta
 
 block content
   main.main
-    each post in posts
-      div.card.postcard
-        div.card-body
-          h2.card-title.postcard-title
-            a(href='/post/'+post.slug)= post.title
-          p.card-content= post.content
-          a(href='/post/'+post.slug).readmore read more...
-          .post-date= post.date.toLowerCase()
+    section.posts
+      .postcard__date-list
+        each post in posts
+          a(href='/post/'+post.slug)
+            .postcard__date= post.date.toLowerCase()
+      .vertical-line
+      .posts-list
+        each post in posts
+          div.postcard
+            div.postcard__body
+              h2.postcard__title
+                a(href='/post/'+post.slug)= post.title
     if totalPages > 1
-      .join.pagination
+      .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
           if page === currentPage
-            a(href=`/?page=${page}`).btn.btn-primary.join-item.btn-active= page
+            a(href=`/?page=${page}`).pagination-item.pagination-item--active= page
           else
-            a(href=`/?page=${page}`).btn.btn-secondary.join-item= page
+            a(href=`/?page=${page}`).pagination-item= page

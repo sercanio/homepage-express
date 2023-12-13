@@ -1,126 +1,201 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  :root {
-    --b1: 1 0 0;
-    --b2: 0.911151 0 0;
-    --padding-card: 1.25rem;
-  }
-
-  html,
-  body {
-    @apply min-h-screen;
-  }
-
-  body {
-    @apply flex flex-col justify-center items-center;
-  }
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@layer components {
-  .main {
-    @apply h-full my-8 md:my-12 flex-grow flex flex-col;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+}
+
+/* Theming and variables */
+:root {
+  /* Base theme */
+  --bg-primary: #fffefd;
+  --bg-secondary: #c7e7df;
+  --text-primary: #131a22;
+  --text-secondary: #455c64;
+  --border-primary: #9d9a8480;
+
+  /* Dark theme */
+  --bg-primary-dark: #131a22;
+  --bg-secondary-dark: #697673;
+  --text-primary-dark: #d1d5db;
+  --text-secondary-dark: #c1c5cb;
+}
+
+/* Utilites */
+.vertical-line {
+  display: inline-block;
+  border-left: 0.1rem solid var(--border-primary);
+  height: 100%;
+  width: 0;
+}
+
+/* Components */
+.main {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.posts {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 15rem;
+  width: 54rem;
+}
+
+.posts-list {
+  flex: 1;
+}
+
+.site-header {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+.divider {
+  margin: 0.5rem;
+}
+
+.aboutme {
+  margin-top: 3rem;
+}
+
+.aboutme__hero__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.aboutme__container {
+  height: 16rem;
+  background: inherit;
+}
+
+.aboutme__hero {
+  text-align: center;
+}
+
+.aboutme__hero__innercontainer {
+  max-width: 20rem;
+}
+
+.aboutme__hero__text {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.pagination {
+  width: fit-content;
+  margin: 0.5rem auto 3rem auto;
+}
+
+.pagination-item {
+  margin: 0 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.pagination-item--active {
+  color: var(--text-secondary-dark);
+  background-color: var(--bg-primary-dark);
+}
+
+.postcard,
+.card {
+  max-width: 54rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+}
+
+.postcard {
+  margin-left: 1rem;
+}
+
+.postcard__body {
+  padding-left: 0 1rem;
+}
+
+.postcard__date {
+  color: var(--text-secondary);
+  margin: 0.5rem 1rem 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.site-logo,
+.nav-link {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.postcard__title {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.site-logo {
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+  float: right;
+}
+
+/* Color schemas */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
   }
 
-  .card {
-    @apply page-width;
-  }
-
-  .card-body {
-    @apply px-4;
-  }
-
-  .siteheader {
-    @apply w-full page-width;
-  }
-
-  .sitenavbar {
-    @apply bg-inherit;
-  }
-
-  .sitenavbar__container {
-    @apply flex justify-between items-center w-full;
-  }
-
-  .divider {
-    @apply my-[0.5rem];
-  }
-
-  .aboutme {
-    @apply mt-12;
-  }
-
-  .aboutme-title {
-    @apply cursor-default !important;
-  }
-
-  .timeline {
-    @apply h-fit py-4;
-  }
-
-  .pagination {
-    @apply w-fit mx-auto mt-2 mb-12;
-  }
-
-  .postcard {
-    @apply page-width mx-auto;
-  }
-
-  .postcard-title,
+  .postcard__title,
   .site-logo,
-  .readmore,
   .nav-link {
-    @apply link link-primary no-underline text-xl;
+    color: var(--text-primary-dark);
   }
 
-  .card-title {
-    @apply text-primary;
+  .pagination-item--active {
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
   }
 
-  .site-logo {
-    @apply px-2 font-semibold;
-  }
-
-  .readmore {
-    @apply w-fit text-base;
-  }
-
-  .nav-link {
-    @apply text-lg mr-2;
-  }
-
-  .post-date {
-    @apply text-sm;
-  }
-
-  .timeline {
-    @apply bg-pattern;
-  }
-
-  .footer {
-    @apply w-full p-4 bg-secondary text-base-content;
-  }
-
-  .footer__container {
-    @apply page-width mx-auto px-4;
-  }
-}
-
-@layer utilities {
-  .page-width {
-    @apply max-w-[54rem];
-  }
-
-  .bg-pattern {
-    background-image: repeating-linear-gradient(
-      45deg,
-      var(--fallback-b1, oklch(var(--b1))),
-      var(--fallback-b1, oklch(var(--b1))) 13px,
-      var(--fallback-b2, oklch(var(--b2))) 13px,
-      var(--fallback-b2, oklch(var(--b2))) 14px
-    );
-    background-size: 40px 40px;
+  .postcard__date {
+    color: var(--text-secondary-dark);
   }
 }

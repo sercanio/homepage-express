@@ -17,7 +17,7 @@ module.exports = function (app, opts) {
         content: post.content.slice(0, 250),
         date: post.date.toLocaleDateString('en-US', {
           year: 'numeric',
-          month: 'long',
+          month: 'short',
           day: 'numeric',
         }),
       }));
@@ -71,7 +71,7 @@ module.exports = function (app, opts) {
         ...postInDB.toObject(),
         date: postInDB.date.toLocaleDateString('en-US', {
           year: 'numeric',
-          month: 'long',
+          month: 'short',
           day: 'numeric',
         }),
       };
