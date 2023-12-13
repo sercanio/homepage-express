@@ -19,7 +19,7 @@ block content
             a(href='/post/'+post.slug)= post.title
           p.card-content= post.content
           a(href='/post/'+post.slug).readmore read more...
-          p.post-date= post.date.toLowerCase()
+          .post-date= post.date.toLowerCase()
     if totalPages > 1
       .join.pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
