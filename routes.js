@@ -43,9 +43,11 @@ module.exports = function (app, opts) {
   app
     .route('/post/add')
     .get((req, res) => {
-      if (req.session.authorized) {
+      const authorized = req.session.authorized;
+      if (authorized) {
         res.render('add-post', {
           doctitle: 'add new post',
+          authorized,
         });
       } else {
         res.redirect('/auth/login');
@@ -82,6 +84,7 @@ module.exports = function (app, opts) {
 
   app.get('/post/:slug', async (req, res) => {
     try {
+      const authorized = req.session.authorized;
       const postInDB = await PostModel.findOne({ slug: req.params.slug });
       const post = {
         ...postInDB.toObject(),
@@ -103,6 +106,7 @@ module.exports = function (app, opts) {
         postDate: post.date,
         postContent: post.content,
         postSlug: post.slug,
+        authorized: authorized,
       });
     } catch (error) {
       console.error(error);
