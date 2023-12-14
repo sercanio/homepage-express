@@ -69,6 +69,7 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
+  height: 100%;
 }
 
 .posts {
@@ -161,6 +162,10 @@ a {
   padding: 0.5rem;
 }
 
+.postcard__title__date {
+  display: none;
+}
+
 .site-logo,
 .nav-link {
   font-size: 1.5rem;
@@ -173,7 +178,8 @@ a {
   font-weight: normal;
 }
 
-.postcard__title:hover {
+.postcard__title:hover,
+.nav-link:hover {
   color: var(--text-hover-secondary);
 }
 
@@ -231,7 +237,8 @@ button:hover {
     color: var(--text-primary-dark);
   }
 
-  .postcard__title:hover {
+  .postcard__title:hover,
+  .nav-link:hover {
     color: var(--text-hover-secondary-dark);
   }
 
@@ -263,5 +270,39 @@ button:hover {
 
   button:hover {
     background-color: var(--text-hover-secondary-dark);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
+  .posts {
+    width: 100%;
+    height: 100% !important;
+  }
+
+  .postcard__date {
+    display: none;
+  }
+
+  .postcard__title{
+    font-size: 1.2rem;
+  }
+
+  .postcard__title__date {
+    display: block;
+    color: var(--text-secondary);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .posts-list {
+    flex: unset;
   }
 }
