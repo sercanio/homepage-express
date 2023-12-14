@@ -28,6 +28,6 @@ block content
       .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
           if page === currentPage
-            a(href=`/?page=${page}` role="button" aria-label=`You are on page ${currentPage}`).pagination-item.pagination-item--active= page
+            a(href=`/?page=${page}` role="button" aria-label=`You are on page ${page}` title=`Page ${page}`).pagination-item.pagination-item--active= page
           else
-            a(href=`/?page=${page}` role="button" aria-label=`Go to page ${page}`).pagination-item= page
+            a(href=`/?page=${page}` role="button" aria-label=`Go to page ${page}` title=`Page ${page}`).pagination-item= page
