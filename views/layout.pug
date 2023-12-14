@@ -16,7 +16,7 @@ html(lang="en")
           if authorized
             a(href='/me' title="About Me" role="navigation" aria-label="About me").nav-link me -
             a(href='/post/add' title="Add New Post" role="navigation" aria-label="Add Post").nav-link add post -
-            a(href='/logout' title="Logout" role="navigation" aria-label="Logout").nav-link logout
+            a(href='/auth/logout' title="Logout" role="navigation" aria-label="Logout").nav-link logout
           else
             a(href='/me' title="About Me" role="navigation" aria-label="About me").nav-link me -
             a(href='/post/add' title="Add New Post" role="navigation" aria-label="Add Post").nav-link

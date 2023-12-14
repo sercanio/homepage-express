@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const PostModel = require('./models/Post');
 const UserModel = require('./models/User');
 const slugify = require('./src/lib/slugify');
+const bcrypt = require('bcrypt');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
@@ -125,6 +126,7 @@ module.exports = function (app, opts) {
   app
     .route('/auth/login')
     .get((req, res, next) => {
+      // Redirect to the home page if already authorized
       if (req.session.authorized) {
         res.redirect('/');
       } else {
@@ -132,19 +134,41 @@ module.exports = function (app, opts) {
       }
     })
     .post(async (req, res, next) => {
-      if (req.body.username && req.body.password) {
-        const { username, password } = req.body;
-        const user = await UserModel.findOne({ username: username });
+      try {
+        // Check if both username and password are provided
+        if (!req.body.username || !req.body.password) {
+          return res.status(400).send('Username and password are required.');
+        }
 
-        if (user.password === password) {
+        const { username, password } = req.body;
+        const user = await UserModel.findOne({ username });
+
+        // Check if the user exists
+        if (!user) {
+          return res
+            .status(401)
+            .render('login-page', { message: 'Invalid username or password.' });
+        }
+
+        // Compare the hashed password
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (passwordMatch) {
+          // Set session variables for authentication
           req.session.user = user;
           req.session.authorized = true;
           res.redirect('/');
         } else {
+          // Incorrect password
           req.session.user = null;
           req.session.authorized = false;
-          res.redirect('/auth/login');
+          return res
+            .status(401)
+            .render('login-page', { message: 'Invalid username or password.' });
         }
+      } catch (err) {
+        // Log the error and send an appropriate response
+        console.error('Error in login route (POST):', err);
+        res.status(500).send('Internal Server Error');
       }
     });
 
@@ -157,36 +181,58 @@ module.exports = function (app, opts) {
           res.render('signup-page');
         } else {
           res.render('login-page', {
-            message: 'An account already exists. Please login.',
+            message:
+              'This is a single-account website. Please login with your account.',
           });
         }
       } catch (err) {
-        res.send('An error occured : ' + err.message);
+        // Log the error and send an appropriate response
+        console.error('Error in signup route (GET):', err);
+        res.status(500).send('Internal Server Error');
       }
     })
     .post(async (req, res, next) => {
-      if (req.body.username && req.body.password) {
+      try {
+        // Check if both username and password are provided
+        if (!req.body.username || !req.body.password) {
+          return res.status(400).send('Username and password are required.');
+        }
+
         const { username, password } = req.body;
 
-        const newUser = new UserModel({
-          username: username,
-          password: password,
+        // Check if the username is already taken
+        const existingUser = await UserModel.findOne({ username });
+        if (existingUser) {
+          return res.status(400).send('Username is already taken.');
+        }
+
+        // Hash the password
+        bcrypt.hash(password, 12, async (err, hash) => {
+          if (err) {
+            console.error('Error hashing password:', err);
+            return res.status(500).send('Internal Server Error');
+          }
+
+          const newUser = new UserModel({
+            username: username,
+            password: hash,
+          });
+
+          await newUser.save();
+          res.render('add-post');
         });
-        newUser.save();
-
-        // res.cookie('username', username, { secure: true });
-        res.render('add-post');
-      } else {
-        res.send('Not add to the database!');
+      } catch (err) {
+        console.error('Error in signup route (POST):', err);
+        res.status(500).send('Internal Server Error');
       }
     });
 
-  app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.error(err);
-      }
-      res.redirect('/');
+    app.get('/auth/logout', (req, res) => {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error(err);
+        }
+        res.redirect('/');
+      });
     });
-  });
 };

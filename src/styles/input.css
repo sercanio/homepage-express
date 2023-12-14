@@ -72,6 +72,10 @@ a {
   height: 100%;
 }
 
+.main .login-form {
+  margin-top: 4rem;
+}
+
 .posts {
   display: flex;
   align-items: flex-start;

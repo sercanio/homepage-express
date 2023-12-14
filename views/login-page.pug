@@ -4,8 +4,8 @@ block meta
   meta(name="description" content="Signup")
 
 block content
-  main
-    form(action="/auth/login" method="post")
+  main.main
+    form(action="/auth/login" method="post").login-form
       h2 Login
       if message
         p= message
