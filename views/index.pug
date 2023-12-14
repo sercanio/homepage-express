@@ -14,20 +14,20 @@ block content
   main.main
     section(style=`height: ${posts.length * 3}rem;`).posts
       .postcard__date-list
-        each post in posts
-          a(href=`/post/${post.slug}` title=`Published on ${post.date}`)
+        each post, index in posts
+          a(href=`/post/${post.slug}` title=`Published on ${post.date}` tabIndex="-1" aria-hidden="true")
             .postcard__date= post.date.toLowerCase()
       .vertical-line
       .posts-list
-        each post in posts
+        each post, index in posts
           div.postcard
             div.postcard__body
               h2.postcard__title
-                a(href=`/post/${post.slug}` title=`Read`)= post.title
+                a(href=`/post/${post.slug}` title=`Click to Read` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
     if totalPages > 1
       .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
           if page === currentPage
-            a(href=`/?page=${page}`).pagination-item.pagination-item--active= page
+            a(href=`/?page=${page}` role="button" aria-label=`You are on page ${currentPage}`).pagination-item.pagination-item--active= page
           else
-            a(href=`/?page=${page}`).pagination-item= page
+            a(href=`/?page=${page}` role="button" aria-label=`Go to page ${page}`).pagination-item= page
