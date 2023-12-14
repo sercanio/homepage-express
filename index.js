@@ -6,6 +6,8 @@ const pug = require('pug');
 const pino = require('pino');
 const pinoHttp = require('pino-http');
 const mongoose = require('mongoose');
+const session = require('express-session');
+require('dotenv').config();
 
 module.exports = async function main(options, cb) {
   // Set default options
@@ -55,10 +57,21 @@ module.exports = async function main(options, cb) {
   // Create the express app
   const app = express();
 
+
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
   app.use(express.json());
+
+  // express-session middleware
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: {
+        sameSite: 'strict',
+      }
+    })
+  );
 
   // Static files
   app.use(express.static(path.join(__dirname, 'public')));

@@ -7,6 +7,8 @@ block content
   main
     form(action="/auth/login" method="post")
       h2 Login
+      if message
+        p= message
       label(for="username") Username:
       input(type="text" id="username" name="username" required)
       label(for="password") Password:

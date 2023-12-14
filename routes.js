@@ -1,11 +1,13 @@
 'use strict';
 const mongoose = require('mongoose');
 const PostModel = require('./models/Post');
+const UserModel = require('./models/User');
 const slugify = require('./src/lib/slugify');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
     const postsPerPage = 8;
+    const authorized = req.session.authorized || false;
     try {
       const page = parseInt(req.query.page) || 1;
       const skip = (page - 1) * postsPerPage;
@@ -30,6 +32,7 @@ module.exports = function (app, opts) {
         currentPage: page,
         totalPages,
         doctitle: 'sercan ateş | web logs',
+        authorized: authorized,
       });
     } catch (error) {
       console.error(error);
@@ -40,9 +43,13 @@ module.exports = function (app, opts) {
   app
     .route('/post/add')
     .get((req, res) => {
-      res.render('add-post', {
-        doctitle: 'add new post',
-      });
+      if (req.session.authorized) {
+        res.render('add-post', {
+          doctitle: 'add new post',
+        });
+      } else {
+        res.redirect('/auth/login');
+      }
     })
     .post(async (req, res, next) => {
       try {
@@ -104,26 +111,78 @@ module.exports = function (app, opts) {
   });
 
   app.get('/me', (req, res) => {
+    const authorized = req.session.authorized;
     res.render('me', {
       doctitle: 'about me',
+      authorized: authorized,
     });
   });
 
   app
     .route('/auth/login')
     .get((req, res, next) => {
-      res.render('login-page');
+      if (req.session.authorized) {
+        res.redirect('/');
+      } else {
+        res.render('login-page');
+      }
     })
-    .post((req, res, next) => {
-      res.redirect('/post/add');
+    .post(async (req, res, next) => {
+      if (req.body.username && req.body.password) {
+        const { username, password } = req.body;
+        const user = await UserModel.findOne({ username: username });
+
+        if (user.password === password) {
+          req.session.user = user;
+          req.session.authorized = true;
+          res.redirect('/');
+        } else {
+          req.session.user = null;
+          req.session.authorized = false;
+          res.redirect('/auth/login');
+        }
+      }
     });
 
   app
     .route('/auth/signup')
-    .get((req, res, next) => {
-      res.render('signup-page');
+    .get(async (req, res, next) => {
+      try {
+        const users = await UserModel.find();
+        if (users.length < 1) {
+          res.render('signup-page');
+        } else {
+          res.render('login-page', {
+            message: 'An account already exists. Please login.',
+          });
+        }
+      } catch (err) {
+        res.send('An error occured : ' + err.message);
+      }
     })
     .post(async (req, res, next) => {
+      if (req.body.username && req.body.password) {
+        const { username, password } = req.body;
+
+        const newUser = new UserModel({
+          username: username,
+          password: password,
+        });
+        newUser.save();
+
+        // res.cookie('username', username, { secure: true });
+        res.render('add-post');
+      } else {
+        res.send('Not add to the database!');
+      }
+    });
+
+  app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error(err);
+      }
       res.redirect('/');
     });
+  });
 };
