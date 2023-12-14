@@ -31,6 +31,10 @@ h3 {
   overflow-wrap: break-word;
 }
 
+p {
+  margin: 1rem 0;
+}
+
 a {
   color: inherit;
   text-decoration: none !important;
@@ -240,7 +244,7 @@ button:hover {
 
 .pencil-icon {
   position: relative;
-  margin-bottom: -0.1rem;
+  margin-bottom: -0.15rem;
 }
 
 /* Color schemas */
