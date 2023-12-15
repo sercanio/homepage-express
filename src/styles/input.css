@@ -1,5 +1,6 @@
 @import 'atom-one-light.css' screen;
 @import 'atom-one-dark.css' screen and (prefers-color-scheme: dark);
+
 *,
 *::before,
 *::after {
@@ -80,6 +81,7 @@ a {
   align-items: flex-start;
   justify-content: center;
   width: 54rem;
+  padding: 0 0.5rem;
 }
 
 .posts-list {
@@ -320,6 +322,7 @@ button:hover {
   .posts {
     width: 100%;
     height: 100% !important;
+    padding: 0;
   }
 
   .postcard {
