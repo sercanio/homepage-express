@@ -24,7 +24,10 @@ block content
             div.postcard__body
               h2.postcard__title
                 a(href=`/post/${post.slug}` title=`Click to Read` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
-                span.postcard__title__date= `${post.date.toLowerCase()}`
+              if authorized
+                a(href=`/post/edit/${post._id}` title=`Click to Edit` aria-label=`Click to Edit` role="button").edit-button  - edit
+                a(title=`Click to Delete` aria-label=`Click to Delete` role="button" onclick=`confirmDelete("${post._id}")`).delete-button  - delete
+              span.postcard__title__date= `${post.date.toLowerCase()}`
     if totalPages > 1
       .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
@@ -32,3 +35,12 @@ block content
             a(href=`/?page=${page}` role="button" aria-label=`You are on page ${page}` title=`Page ${page}`).pagination-item.pagination-item--active= page
           else
             a(href=`/?page=${page}` role="button" aria-label=`Go to page ${page}` title=`Page ${page}`).pagination-item= page
+
+  if authorized
+    script.
+      function confirmDelete(postId) {
+        var result = confirm("Are you sure you want to delete this post?");
+        if (result) {
+          window.location.href = `/post/delete/${postId}`;
+        }
+      }

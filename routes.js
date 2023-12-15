@@ -49,6 +49,9 @@ module.exports = function (app, opts) {
         res.render('add-post', {
           doctitle: 'add new post',
           authorized,
+          postId: null,
+          postTitle: null,
+          postContent: null,
         });
       } else {
         res.redirect('/auth/login');
@@ -82,6 +85,96 @@ module.exports = function (app, opts) {
         next(error);
       }
     });
+
+  app
+    .route('/post/edit/:id')
+    .get(async (req, res) => {
+      try {
+        const post = await PostModel.findById(req.params.id);
+
+        const authorized = req.session.authorized;
+        if (authorized) {
+          res.render('add-post', {
+            doctitle: 'Edit Post',
+            authorized,
+            postId: post._id,
+            postTitle: post.title,
+            postContent: post.content,
+          });
+        } else {
+          res.redirect('/auth/login');
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+      }
+    })
+    .put(async (req, res, next) => {
+      try {
+        // Input validation
+        if (!req.body.title || !req.body.content) {
+          return res.status(400).json({
+            success: false,
+            error: 'Title and content are required fields.',
+          });
+        }
+
+        const postId = req.params.id;
+        const slug = slugify(req.body.title);
+        const postData = {
+          title: req.body.title,
+          slug: slug,
+          tags: req.body.tags,
+          content: req.body.content,
+          date: req.body.date || Date.now(),
+        };
+
+        // Update the existing post
+        const updatedPost = await PostModel.findByIdAndUpdate(
+          postId,
+          postData,
+          {
+            new: true, // Return the updated document
+          }
+        );
+
+        if (!updatedPost) {
+          return res.status(404).json({
+            success: false,
+            error: 'Post not found.',
+          });
+        }
+
+        res.json({ success: true, post: updatedPost });
+      } catch (error) {
+        console.error(error);
+        next(error);
+      }
+    });
+
+  app.get('/post/delete/:id', async (req, res) => {
+    try {
+      const authorized = req.session.authorized;
+      if (!authorized) {
+        return res.status(401).send('Unauthorized');
+      }
+
+      const postId = req.params.id;
+
+      const post = await PostModel.findById(postId);
+
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+
+      await PostModel.deleteOne({ _id: postId });
+
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
 
   app.get('/post/:slug', async (req, res) => {
     try {
@@ -227,12 +320,12 @@ module.exports = function (app, opts) {
       }
     });
 
-    app.get('/auth/logout', (req, res) => {
-      req.session.destroy((err) => {
-        if (err) {
-          console.error(err);
-        }
-        res.redirect('/');
-      });
+  app.get('/auth/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error(err);
+      }
+      res.redirect('/');
     });
+  });
 };

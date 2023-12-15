@@ -1,4 +1,4 @@
-async function saveContent() {
+async function saveContent(postId) {
   var editor = tinymce.get('tinymce-editor');
   var content = editor.getContent();
 
@@ -19,8 +19,11 @@ async function saveContent() {
   content = new XMLSerializer().serializeToString(doc);
 
   try {
-    const response = await fetch('/post/add', {
-      method: 'POST',
+    const url = postId ? `/post/edit/${postId}` : '/post/add';
+    const method = postId ? 'PUT' : 'POST';
+
+    const response = await fetch(url, {
+      method: method,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -33,12 +36,18 @@ async function saveContent() {
     const data = await response.json();
 
     if (response.ok) {
-      console.log('Document created successfully:', data);
+      console.log(
+        `Document ${postId ? 'updated' : 'created'} successfully:`,
+        data
+      );
     } else {
-      console.error('Failed to create document:', data.error);
+      console.error(
+        `Failed to ${postId ? 'update' : 'create'} document:`,
+        data.error
+      );
     }
   } catch (error) {
-    console.error('Error creating document:', error);
+    console.error(`Error ${postId ? 'updating' : 'creating'} document:`, error);
   }
 }
 
@@ -56,7 +65,7 @@ tinymce.init({
   autosave_prefix: '{path}{query}-{id}-',
   autosave_restore_when_empty: false,
   autosave_retention: '2m',
-  save_onsavecallback: saveContent,
+  save_onsavecallback: () => saveContent(postId),
   save_oncancelcallback: () => {
     console.log('Save canceled');
   },
@@ -107,4 +116,14 @@ tinymce.init({
   contextmenu: 'link image imagetools table',
   skin: 'oxide-dark',
   content_css: 'dark',
+  setup: function (editor) {
+    editor.on('init', function (e) {
+      if (postTitle) {
+        const post = `<h2>${postTitle}</h2>` + postContent;
+        editor.setContent(post);
+      } else {
+        editor.setContent('');
+      }
+    });
+  },
 });

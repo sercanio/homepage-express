@@ -172,6 +172,7 @@ a {
 }
 
 .postcard__title {
+  display: inline;
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
@@ -220,6 +221,15 @@ button {
 
 button:hover {
   background-color: var(--text-hover-secondary);
+}
+
+.edit-button:hover {
+  color: #ffff00 !important;
+}
+
+.delete-button:hover{
+  color: #ff0000;
+  cursor: pointer;
 }
 
 .pencil-icon {

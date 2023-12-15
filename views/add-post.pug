@@ -3,7 +3,10 @@ extends layout.pug
 block content
   main.main
     textarea(id="tinymce-editor")
-
   block script
+    script.
+      var postContent= !{JSON.stringify(postContent)}
+      var postTitle =!{JSON.stringify(postTitle)}
+      var postId =!{JSON.stringify(postId)}
     script(type="application/javascript" src="/tinymce/tinymce.min.js")
     script(type="application/javascript" src="/js/tinymce-config.js")
