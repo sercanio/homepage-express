@@ -1,9 +1,18 @@
+@import 'atom-one-light.css' screen;
+@import 'atom-one-dark.css' screen and (prefers-color-scheme: dark);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  font-size: 16px;
 }
 
 img,
@@ -46,6 +55,11 @@ a {
   width: 0;
 }
 
+.w-full {
+  display: block;
+  width: 100%;
+}
+
 /* Components */
 .main {
   display: flex;
@@ -53,7 +67,8 @@ a {
   align-items: center;
   gap: 2.5rem;
   height: 100%;
-  margin-top: 4rem;
+  max-width: 54rem;
+  margin: 4rem auto 0 auto;
 }
 
 .main .login-form {
@@ -145,12 +160,23 @@ a {
 
 .postcard,
 .card {
-  max-width: 54rem;
   margin: 0.5rem auto;
   padding: 0.5rem;
 }
 
+.card {
+  font-size: 1.1rem;
+  max-width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+code {
+  padding: 0 !important;
+}
+
 .postcard {
+  max-width: 54rem;
   margin-left: 1rem;
 }
 
@@ -227,7 +253,7 @@ button:hover {
   color: #ffff00 !important;
 }
 
-.delete-button:hover{
+.delete-button:hover {
   color: #ff0000;
   cursor: pointer;
 }

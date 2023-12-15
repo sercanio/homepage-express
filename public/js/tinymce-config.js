@@ -37,9 +37,23 @@ async function saveContent(postId) {
 
     if (response.ok) {
       console.log(
-        `Document ${postId ? 'updated' : 'created'} successfully:`,
+        `Document ${postId ? 'updated' : 'created'} successfully: `,
         data
       );
+      Toastify({
+        text: `Document ${postId ? 'updated' : 'created'} successfully`,
+        duration: 1500,
+        destination: '/',
+        newWindow: true,
+        close: true,
+        gravity: 'top', // `top` or `bottom`
+        position: 'right', // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: 'linear-gradient(to right, #00b09b, #96c93d)',
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast();
     } else {
       console.error(
         `Failed to ${postId ? 'update' : 'create'} document:`,
