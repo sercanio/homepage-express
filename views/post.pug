@@ -10,10 +10,11 @@ block meta
   meta(name="twitter:image" content="")
   meta(name="twitter:card" content="summary_large_image")
 
+  link(rel="stylesheet" href="/styles/atom-one-light.css")
+  link(rel="stylesheet" href="/styles/atom-one-dark.css")
+
   script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js")
 
-  script.
-    hljs.highlightAll();
 
 block content
   main.main
@@ -23,3 +24,5 @@ block content
         em.post-date published on #{postDate.toLowerCase()}
         .divider
         !=postContent
+  script.
+    hljs.highlightAll();

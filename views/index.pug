@@ -15,7 +15,6 @@ block content
     section(style=`height: ${authorized ? posts.length * 3 : posts.filter(post => post.isVisible === true).length * 3}rem;`).posts
       .postcard__date-list
         each post, index in posts
-          a(href=`/post/${post.slug}` title=`Published on ${post.date}` tabIndex="-1" aria-hidden="true")
           if post.isVisible || authorized
             .postcard__date= post.date.toLowerCase()
       .vertical-line
