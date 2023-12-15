@@ -26,7 +26,8 @@ block content
               div.postcard__body
                 h2.postcard__title
                   a(href=`/post/${post.slug}` title=`Click to Read` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
-                  a(title='Click to Change Visibility' aria-label='Click to Change Visibility' role='button' onclick=`confirmChangeVisibility("${post._id}")`).delete-button #{post.isVisible ? ' - active' : ' - passive'}
+                  a(title='Click to Change Visibility' aria-label='Click to Change Visibility' role='button'
+                  onclick=`confirmChangeVisibility("${post._id}")`).delete-button #{post.isVisible ? ' - active' : ' - passive'}
                   a(href=`/post/edit/${post._id}` title=`Click to Edit` aria-label=`Click to Edit` role="button").edit-button  - edit
                   a(title=`Click to Delete` aria-label=`Click to Delete` role="button" onclick=`confirmDelete("${post._id}")`).delete-button  - x
                   span.postcard__title__date= `${post.date.toLowerCase()}`
