@@ -208,6 +208,31 @@ module.exports = function (app, opts) {
     }
   });
 
+  app.get('/post/toggle-visibility/:id', async (req, res) => {
+    try {
+      const authorized = req.session.authorized;
+
+      if (!authorized) {
+        return res.status(401).send('Unauthorized');
+      }
+
+      const postId = req.params.id;
+      const post = await PostModel.findById(postId);
+
+      if (!post) {
+        return res.status(404).send('Post not found');
+      }
+
+      post.isVisible = !post.isVisible;
+      await post.save();
+
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
   app.get('/me', (req, res) => {
     const authorized = req.session.authorized;
     res.render('me', {
