@@ -81,10 +81,6 @@ a {
   padding: 0 0.5rem;
 }
 
-.posts-list {
-  flex: 1;
-}
-
 .site-header {
   max-width: 54rem;
   margin: 0 auto;
