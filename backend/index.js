@@ -28,7 +28,11 @@ module.exports = async function main(options, cb) {
 
   // mongoose configuration
   mongoose.set('strictQuery', false);
-  const mongoDB = 'mongodb://mongodb:27017/blogDB';
+  const mongoDB =
+    process.env.NODE_ENV === 'production'
+      ? process.env.MONGODB_CONNECTION_STRING
+      : process.env.MONGODB_CONNECTION_STRING_LOCAL;
+
   // const mongoDB = 'mongodb://127.0.0.1:27017/blogDB';
   await mongoose.connect(mongoDB);
   logger.info('Connected to the DB');
@@ -57,7 +61,6 @@ module.exports = async function main(options, cb) {
   // Create the express app
   const app = express();
 
-
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
@@ -69,7 +72,7 @@ module.exports = async function main(options, cb) {
       secret: process.env.SESSION_SECRET,
       cookie: {
         sameSite: 'strict',
-      }
+      },
     })
   );
 
