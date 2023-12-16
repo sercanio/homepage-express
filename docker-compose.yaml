@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mongodb:
     image: mongo
@@ -7,12 +8,21 @@ services:
     volumes:
       - mongodb_data:/data/db
 
-  server:
-    build: .
+  backend:
+    build: ./backend
     ports:
       - "3000:8000"
     depends_on:
       - mongodb
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
 
 volumes:
   mongodb_data:

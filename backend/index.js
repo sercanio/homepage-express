@@ -28,8 +28,8 @@ module.exports = async function main(options, cb) {
 
   // mongoose configuration
   mongoose.set('strictQuery', false);
-  // const mongoDB = 'mongodb://mongodb:27017/blogDB';
-  const mongoDB = 'mongodb://127.0.0.1:27017/blogDB';
+  const mongoDB = 'mongodb://mongodb:27017/blogDB';
+  // const mongoDB = 'mongodb://127.0.0.1:27017/blogDB';
   await mongoose.connect(mongoDB);
   logger.info('Connected to the DB');
 
