@@ -136,6 +136,22 @@ a {
   padding-bottom: 1.5rem;
 }
 
+.social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-media a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
 .pagination {
   width: fit-content;
   margin: 0.5rem auto 3rem auto;
@@ -282,6 +298,10 @@ button:hover {
 
   .postcard__date {
     color: var(--text-secondary-dark);
+  }
+
+  .social-media a {
+    color: var(--text-primary-dark);
   }
 
   .pagination-item:hover {
