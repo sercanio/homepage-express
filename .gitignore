@@ -1,5 +1,7 @@
+
 # Custom
 backend/node_modules
+certbot
 
 # Logs
 logs
