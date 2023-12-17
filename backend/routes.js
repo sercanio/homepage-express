@@ -73,6 +73,7 @@ module.exports = function (app, opts) {
           slug: slug,
           tags: req.body.tags,
           content: req.body.content,
+   	  hasCode: req.body.hasCode,
           date: req.body.date || Date.now(),
         };
 
@@ -126,6 +127,7 @@ module.exports = function (app, opts) {
           slug: slug,
           tags: req.body.tags,
           content: req.body.content,
+	  hasCode: req.body.hasCode,
           date: req.body.date || Date.now(),
         };
 
@@ -200,6 +202,7 @@ module.exports = function (app, opts) {
         postDate: post.date,
         postContent: post.content,
         postSlug: post.slug,
+	postHasCode: post.hasCode,
         authorized: authorized,
       });
     } catch (error) {

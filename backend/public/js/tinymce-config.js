@@ -10,6 +10,9 @@ async function saveContent(postId) {
   var titleElement = doc.querySelector('h2');
   var title = titleElement ? titleElement.textContent.trim() : 'Default Title';
 
+  // Detect post has code
+  var postHasCode = doc.querySelector('code') != null;
+
   // Remove the first <h2> tag from the content
   if (titleElement) {
     titleElement.parentNode.removeChild(titleElement);
@@ -30,6 +33,7 @@ async function saveContent(postId) {
       body: JSON.stringify({
         title: title,
         content: content,
+	hasCode: postHasCode,
       }),
     });
 

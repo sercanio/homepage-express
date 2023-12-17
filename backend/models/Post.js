@@ -8,6 +8,7 @@ const PostSchema = new Schema({
   slug: { type: String, required: true },
   tags: { type: Array, required: true },
   content: { type: String, required: true },
+  hasCode: { type: Boolean, required: true},
   isVisible: { type: Boolean, required: true, default: false },
 });
 
