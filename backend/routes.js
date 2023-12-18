@@ -13,7 +13,7 @@ module.exports = function (app, opts) {
       const page = parseInt(req.query.page) || 1;
       const skip = (page - 1) * postsPerPage;
 
-      const postsInDB = await PostModel.find().skip(skip).limit(postsPerPage);
+      const postsInDB = await PostModel.find().sort({ date: -1 }).skip(skip).limit(postsPerPage);
 
       const allPosts = postsInDB.map((post) => ({
         ...post.toObject(),
@@ -128,7 +128,6 @@ module.exports = function (app, opts) {
           tags: req.body.tags,
           content: req.body.content,
 	  hasCode: req.body.hasCode,
-          date: req.body.date || Date.now(),
         };
 
         // Update the existing post
