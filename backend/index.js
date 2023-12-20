@@ -61,7 +61,7 @@ module.exports = async function main(options, cb) {
 
   // Create the express app
   const app = express();
-  app.use(helmet)
+  app.use(helmet())
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
