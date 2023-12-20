@@ -12,7 +12,7 @@ require('dotenv').config();
 
 module.exports = async function main(options, cb) {
   // Set default options
-  const ready = cb || function () {};
+  const ready = cb || function () { };
   const opts = Object.assign(
     {
       // Default options
@@ -61,7 +61,16 @@ module.exports = async function main(options, cb) {
 
   // Create the express app
   const app = express();
-  app.use(helmet())
+  app.use(helmet(contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'",],
+      scriptSrc: ["'self'",],
+      imgSrc: ["'self'",],
+      fontSrc: ["'self'",],
+      // Add other directives as needed for your application
+    },
+  },))
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
