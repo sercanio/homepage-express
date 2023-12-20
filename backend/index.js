@@ -2,6 +2,7 @@
 const express = require('express');
 const httpErrors = require('http-errors');
 const path = require('path');
+import helmet from "helmet";
 const pug = require('pug');
 const pino = require('pino');
 const pinoHttp = require('pino-http');
@@ -60,7 +61,7 @@ module.exports = async function main(options, cb) {
 
   // Create the express app
   const app = express();
-
+  app.use(helmet)
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
