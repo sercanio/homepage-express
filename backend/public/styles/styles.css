@@ -27,6 +27,11 @@ a {
   text-decoration: none !important;
 }
 
+aside {
+  background: var(--bg-aside);
+  padding: 0.5rem 1rem;
+}
+
 /* Theming and variables */
 :root {
   /* Base theme */
@@ -36,6 +41,7 @@ a {
   --text-secondary: #435852;
   --text-hover-secondary: #627163;
   --border-primary: #9d9a8480;
+  --bg-aside: #ebf4f7;
 
   /* Dark theme */
   --bg-primary-dark: #131a22;
@@ -43,6 +49,7 @@ a {
   --text-primary-dark: #d1d5db;
   --text-secondary-dark: #969d95;
   --text-hover-secondary-dark: #829ba3;
+  --bg-aside-dark: #2b3942;
 }
 
 /* Utilites */
@@ -144,7 +151,7 @@ a {
   display: block;
   text-align: center;
   text-decoration: none;
-  font-size : 100%;
+  font-size: 100%;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
@@ -280,6 +287,10 @@ button:hover {
   body {
     background-color: var(--bg-primary-dark);
     color: var(--text-primary-dark);
+  }
+
+  aside {
+    background: var(--bg-aside-dark);
   }
 
   .postcard__title,
