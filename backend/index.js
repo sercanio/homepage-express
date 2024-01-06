@@ -8,6 +8,7 @@ const pino = require('pino');
 const pinoHttp = require('pino-http');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
 module.exports = async function main(options, cb) {
@@ -67,16 +68,6 @@ module.exports = async function main(options, cb) {
   // parse json response
   app.use(express.json());
 
-  // express-session middleware
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      cookie: {
-        sameSite: 'strict',
-      },
-    })
-  );
-
   // Static files
   app.use(express.static(path.join(__dirname, 'public')));
 
@@ -85,6 +76,20 @@ module.exports = async function main(options, cb) {
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'pug');
 
+  // Session middleware
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+      store: MongoStore.create({ mongoUrl: mongoDB }),
+      cookie: {
+        maxAge: +process.env.SESSION_COOKIE_MAXAGE,
+        secure: process.env.NODE_ENV === 'production', // Set to true if your app is served over HTTPS
+        httpOnly: true,
+      },
+    }),
+  );
   // Common middleware
   // app.use(/* ... */)
   app.use(pinoHttp({ logger }));
