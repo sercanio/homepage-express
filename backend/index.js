@@ -62,7 +62,19 @@ module.exports = async function main(options, cb) {
 
   // Create the express app
   const app = express();
+
   // app.use(helmet())
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
+          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud"],
+          "style-src": ["'self'", "cdn.jsdelivr.net"],
+        },
+      },
+    }),
+  );
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response
