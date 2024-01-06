@@ -70,7 +70,7 @@ module.exports = async function main(options, cb) {
         directives: {
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
           "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud"],
-          "style-src": ["'self'", "cdn.jsdelivr.net"],
+          "style-src": ["'self'", "'unsafe-inline'","cdn.jsdelivr.net"],
         },
       },
     }),
