@@ -100,7 +100,7 @@ module.exports = async function main(options, cb) {
         maxAge: +process.env.SESSION_COOKIE_MAXAGE,
         secure: process.env.NODE_ENV === 'production', // Set to true if your app is served over HTTPS
         httpOnly: true,
-	sameSite: 'none',
+	      sameSite: 'none',
       },
     }),
   );
