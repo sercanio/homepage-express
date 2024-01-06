@@ -89,7 +89,8 @@ module.exports = async function main(options, cb) {
   app.set('view engine', 'pug');
 
   // Session middleware
-  app.use(
+   app.set('trust proxy', true)
+   app.use(
     session({
       secret: process.env.SESSION_SECRET,
       resave: false,
