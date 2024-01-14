@@ -69,7 +69,7 @@ module.exports = async function main(options, cb) {
       contentSecurityPolicy: {
         directives: {
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud"],
+          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud","cdnjs.cloudflare.com"],
           "style-src": ["'self'", "'unsafe-inline'","cdn.jsdelivr.net"],
         },
       },
