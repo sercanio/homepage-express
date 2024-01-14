@@ -68,9 +68,11 @@ module.exports = async function main(options, cb) {
     helmet({
       contentSecurityPolicy: {
         directives: {
+          "default-src": ["'self'"],
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud","cdnjs.cloudflare.com"],
-          "style-src": ["'self'", "'unsafe-inline'","cdn.jsdelivr.net"],
+          "script-src": ["'unsafe-inline'", "'self'","cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com", "localhost"],
+          "script-src-attr": ["'unsafe-inline'", "'self'"],
+          "style-src": ["'unsafe-inline'", "'self'", "cdn.jsdelivr.net"],
         },
       },
     }),
@@ -100,7 +102,7 @@ module.exports = async function main(options, cb) {
         maxAge: +process.env.SESSION_COOKIE_MAXAGE,
         secure: process.env.NODE_ENV === 'production', // Set to true if your app is served over HTTPS
         httpOnly: true,
-	      sameSite: 'none',
+	      sameSite: 'strict',
       },
     }),
   );
