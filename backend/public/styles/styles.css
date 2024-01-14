@@ -30,6 +30,8 @@ a {
 aside {
   background: var(--bg-aside);
   padding: 0.5rem 1rem;
+  border-left: 0.25rem solid;
+  border-color: var(--text-primary);
 }
 
 /* Theming and variables */
@@ -291,6 +293,7 @@ button:hover {
 
   aside {
     background: var(--bg-aside-dark);
+    border-color: var(--text-primary-dark);
   }
 
   .postcard__title,
