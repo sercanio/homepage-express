@@ -12,6 +12,9 @@ body {
   color: var(--text-primary);
   font-size: 16px;
 }
+code {
+  padding: 0 !important;
+}
 
 img,
 picture,
@@ -29,6 +32,10 @@ a {
 
 article a {
   text-decoration: underline;
+}
+
+article figcaption {
+  text-align: center;
 }
 
 aside {
@@ -58,7 +65,6 @@ aside {
   --bg-aside-dark: #2b3942;
 }
 
-/* Utilites */
 .vertical-line {
   display: inline-block;
   border-left: 0.1rem solid var(--border-primary);
@@ -71,7 +77,6 @@ aside {
   width: 100%;
 }
 
-/* Components */
 .main {
   display: flex;
   flex-direction: column;
@@ -92,6 +97,12 @@ aside {
   justify-content: center;
   width: 54rem;
   padding: 0 0.5rem;
+}
+
+article .image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .site-header {
@@ -194,10 +205,6 @@ aside {
   max-width: 100%;
   margin-top: 0;
   padding-top: 0;
-}
-
-code {
-  padding: 0 !important;
 }
 
 .postcard {
