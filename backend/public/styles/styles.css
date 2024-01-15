@@ -13,7 +13,7 @@ body {
   font-size: 16px;
 }
 pre code {
-  padding: .75rem !important;
+  padding: 0.75rem !important;
 }
 
 img,
@@ -38,11 +38,37 @@ article figcaption {
   text-align: center;
 }
 
-aside {
+aside,
+blockquote {
   background: var(--bg-aside);
   padding: 0.5rem 1rem;
+}
+
+aside {
   border-left: 0.25rem solid;
   border-color: var(--text-primary);
+}
+
+blockquote {
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 1.4em;
+  font-family: Open Sans;
+  font-style: italic;
+  color: var(--text-blockquote);
+  padding: 1.2em 30px 1.2em 75px;
+  line-height: 1.5;
+  background: var(--bg-aside);
+}
+
+blockquote::after {
+  content: '\201C';
+  position: absolute;
+  color: var(--quotationmark);
+  font-size: 4em;
+  left: 0.625rem;
+  top: -0.625rem;
 }
 
 /* Theming and variables */
@@ -53,8 +79,10 @@ aside {
   --text-primary: #131a22;
   --text-secondary: #435852;
   --text-hover-secondary: #627163;
+  --text-blockquote: #555555;
   --border-primary: #9d9a8480;
   --bg-aside: #ebf4f7;
+  --quotationmark: #78c0a8;
 
   /* Dark theme */
   --bg-primary-dark: #131a22;
@@ -62,6 +90,7 @@ aside {
   --text-primary-dark: #d1d5db;
   --text-secondary-dark: #969d95;
   --text-hover-secondary-dark: #829ba3;
+  --text-blockquote-dark: #d1d5db;
   --bg-aside-dark: #2b3942;
 }
 
@@ -99,7 +128,7 @@ aside {
   padding: 0 0.5rem;
 }
 
-article .image{
+article .image {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -305,6 +334,10 @@ button:hover {
   aside {
     background: var(--bg-aside-dark);
     border-color: var(--text-primary-dark);
+  }
+  blockquote {
+    color: var(--text-blockquote-dark);
+    background-color: var(--bg-aside-dark);
   }
 
   .postcard__title,
