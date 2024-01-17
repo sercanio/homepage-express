@@ -4,8 +4,9 @@
 node ./bin/app
 ```
 
-## minify css file(s)
-
+## Renew Access Token
+- create new access token
+- set the remote url again with the command:
 ```bash
-npx cleancss -o public/styles/styles.css src/styles/input.css
+git remote set-url origin https://<token>@github.com/sercanio/homepage-express
 ```
