@@ -1,12 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+/* Theming and variables */
+:root {
+  /* Base theme */
+  --bg-primary: #fffefd;
+  --bg-secondary: #c7e7df;
+  --text-primary: #131a22;
+  --text-secondary: #435852;
+  --text-hover-secondary: #627163;
+  --text-blockquote: #555555;
+  --border-primary: #9d9a8480;
+  --bg-aside: #ebf4f7;
+  --quotationmark: #78c0a8;
+
+  /* Dark theme */
+  --bg-primary-dark: #131a22;
+  --bg-secondary-dark: #697673;
+  --text-primary-dark: #d1d5db;
+  --text-secondary-dark: #969d95;
+  --text-hover-secondary-dark: #829ba3;
+  --text-blockquote-dark: #d1d5db;
+  --bg-aside-dark: #2b3942;
+}
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -74,29 +97,6 @@ blockquote::after {
   font-size: 4em;
   left: 0.625rem;
   top: -0.625rem;
-}
-
-/* Theming and variables */
-:root {
-  /* Base theme */
-  --bg-primary: #fffefd;
-  --bg-secondary: #c7e7df;
-  --text-primary: #131a22;
-  --text-secondary: #435852;
-  --text-hover-secondary: #627163;
-  --text-blockquote: #555555;
-  --border-primary: #9d9a8480;
-  --bg-aside: #ebf4f7;
-  --quotationmark: #78c0a8;
-
-  /* Dark theme */
-  --bg-primary-dark: #131a22;
-  --bg-secondary-dark: #697673;
-  --text-primary-dark: #d1d5db;
-  --text-secondary-dark: #969d95;
-  --text-hover-secondary-dark: #829ba3;
-  --text-blockquote-dark: #d1d5db;
-  --bg-aside-dark: #2b3942;
 }
 
 .vertical-line {
