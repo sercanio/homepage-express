@@ -198,6 +198,11 @@ module.exports = function (app, opts) {
         return;
       }
 
+      if (!authorized && !post.isVisible) {
+        res.status(401).render('error', { error: { status: "404", code: "404" }, message: "Blog post is not found" });
+        return;
+      }
+
       res.render('post', {
         docTitle: post.title,
         docDescription: post.title,
