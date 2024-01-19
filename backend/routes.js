@@ -27,14 +27,15 @@ module.exports = function (app, opts) {
       }));
 
       // const totalPosts = await PostModel.countDocuments();
-      const totalPosts = authorized ? await PostModel.find({}) : await PostModel.find({isVisible: true});
+      const totalPosts = authorized ? await PostModel.find({}) : await PostModel.find({ isVisible: true });
       const totalPages = Math.ceil(totalPosts.length / postsPerPage);
 
       res.render('index', {
         posts: allPosts,
         currentPage: page,
         totalPages,
-        doctitle: 'sercan ateş | web logs',
+        docTitle: 'Sercan Ateş',
+        docDescription: 'Personal web logs about programming, technology and life.',
         authorized: authorized,
       });
     } catch (error) {
@@ -75,7 +76,7 @@ module.exports = function (app, opts) {
           slug: slug,
           tags: req.body.tags,
           content: req.body.content,
-   	  hasCode: req.body.hasCode,
+          hasCode: req.body.hasCode,
           date: req.body.date || Date.now(),
         };
 
@@ -129,7 +130,7 @@ module.exports = function (app, opts) {
           slug: slug,
           tags: req.body.tags,
           content: req.body.content,
-	  hasCode: req.body.hasCode,
+          hasCode: req.body.hasCode,
         };
 
         // Update the existing post
@@ -198,12 +199,13 @@ module.exports = function (app, opts) {
       }
 
       res.render('post', {
-        doctitle: post.title,
+        docTitle: post.title,
+        docDescription: post.title,
         postTitle: post.title,
         postDate: post.date,
         postContent: post.content,
         postSlug: post.slug,
-	postHasCode: post.hasCode,
+        postHasCode: post.hasCode,
         authorized: authorized,
       });
     } catch (error) {
@@ -358,7 +360,7 @@ module.exports = function (app, opts) {
     });
   });
 
-  app.get('/sitemap.xml', (req, res, next)=> {
+  app.get('/sitemap.xml', (req, res, next) => {
     // let xml_content = [
     //   '<?xml version="1.0" encoding="UTF-8"?>',
     //   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
