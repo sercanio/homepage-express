@@ -123,9 +123,15 @@ blockquote::after {
 .posts {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   width: 54rem;
   padding: 0 0.5rem;
+}
+
+.post-title,
+.post-date {
+  display: block;
+  text-align: center;
 }
 
 article .image {
