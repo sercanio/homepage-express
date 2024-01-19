@@ -4,6 +4,7 @@ const PostModel = require('./models/Post');
 const UserModel = require('./models/User');
 const slugify = require('./src/lib/slugify');
 const bcrypt = require('bcrypt');
+const generateSitemap = require('./src/lib/sitemap');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
@@ -79,7 +80,7 @@ module.exports = function (app, opts) {
 
         const newPost = new PostModel(postData);
         await newPost.save();
-
+        await generateSitemap(newPost.slug);
         res.json({ success: true, post: newPost });
       } catch (error) {
         console.error(error);
@@ -355,4 +356,19 @@ module.exports = function (app, opts) {
       res.redirect('/');
     });
   });
+
+  app.get('/sitemap.xml', (req, res, next)=> {
+    // let xml_content = [
+    //   '<?xml version="1.0" encoding="UTF-8"?>',
+    //   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    //   '  <url>',
+    //   '    <loc>http://www.example.com/</loc>',
+    //   '    <lastmod>2005-01-01</lastmod>',
+    //   '  </url>',
+    //   '</urlset>'
+    // ]
+    res.set('Content-Type', 'text/xml')
+    res.send('/sitemap.xml');
+    // res.send(xml_content.join('\n'))
+  })
 };
