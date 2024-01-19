@@ -8,7 +8,7 @@ const generateSitemap = require('./src/lib/sitemap');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
-    const postsPerPage = 8;
+    const postsPerPage = 10;
     const authorized = req.session.authorized || false;
     try {
       const page = parseInt(req.query.page) || 1;
