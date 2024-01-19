@@ -26,8 +26,9 @@ module.exports = function (app, opts) {
         }),
       }));
 
-      const totalPosts = await PostModel.countDocuments();
-      const totalPages = Math.ceil(totalPosts / postsPerPage);
+      // const totalPosts = await PostModel.countDocuments();
+      const totalPosts = authorized ? await PostModel.find({}) : await PostModel.find({isVisible: true});
+      const totalPages = Math.ceil(totalPosts.length / postsPerPage);
 
       res.render('index', {
         posts: allPosts,
