@@ -30,6 +30,11 @@ a {
   text-decoration: none;
 }
 
+article {
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
 article a {
   text-decoration: underline;
 }
@@ -160,10 +165,6 @@ article .image {
   justify-content: flex-start;
 }
 
-.divider {
-  margin: 0.5rem;
-}
-
 .aboutme {
   margin-top: 3rem;
 }
@@ -229,22 +230,10 @@ article .image {
   background-color: var(--bg-primary-dark);
 }
 
-.postcard,
-.card {
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-}
-
-.card {
-  font-size: 1.1rem;
-  max-width: 100%;
-  margin-top: 0;
-  padding-top: 0;
-}
-
 .postcard {
   max-width: 54rem;
-  margin-left: 1rem;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
 }
 
 .postcard__date {
