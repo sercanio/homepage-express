@@ -1,7 +1,6 @@
 
 # Custom
 backend/node_modules
-backend/**/*sitemap*
 certbot
 
 # Logs
