@@ -246,7 +246,8 @@ module.exports = function (app, opts) {
   app.get('/me', (req, res) => {
     const authorized = req.session.authorized;
     res.render('me', {
-      doctitle: 'about me',
+      docTitle: 'About Me',
+      docDescription: 'Get contact and explore my journey in software development through insightful blog posts.',
       authorized: authorized,
     });
   });
