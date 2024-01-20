@@ -4,7 +4,7 @@ const PostModel = require('./models/Post');
 const UserModel = require('./models/User');
 const slugify = require('./src/lib/slugify');
 const bcrypt = require('bcrypt');
-const generateSitemap = require('./src/lib/sitemap');
+const generateSitemapXML = require('./middlewares/sitemap-middleware');
 
 module.exports = function (app, opts) {
   app.get('/', async (req, res, next) => {
@@ -82,7 +82,7 @@ module.exports = function (app, opts) {
 
         const newPost = new PostModel(postData);
         await newPost.save();
-        await generateSitemap(newPost.slug);
+        // await generateSitemap(newPost.slug, newPost.date);
         res.json({ success: true, post: newPost });
       } catch (error) {
         console.error(error);
@@ -95,7 +95,6 @@ module.exports = function (app, opts) {
     .get(async (req, res) => {
       try {
         const post = await PostModel.findById(req.params.id);
-
         const authorized = req.session.authorized;
         if (authorized) {
           res.render('add-post', {
@@ -365,18 +364,11 @@ module.exports = function (app, opts) {
     });
   });
 
-  app.get('/sitemap.xml', (req, res, next) => {
-    // let xml_content = [
-    //   '<?xml version="1.0" encoding="UTF-8"?>',
-    //   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    //   '  <url>',
-    //   '    <loc>http://www.example.com/</loc>',
-    //   '    <lastmod>2005-01-01</lastmod>',
-    //   '  </url>',
-    //   '</urlset>'
-    // ]
+  app.get('/sitemap.xml', generateSitemapXML, async (req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
     res.set('Content-Type', 'text/xml')
-    res.send('/sitemap.xml');
-    // res.send(xml_content.join('\n'))
+    res.send('sitemap.xml');
   })
 };
