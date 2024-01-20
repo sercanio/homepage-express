@@ -81,11 +81,11 @@ blockquote {
   position: relative;
   margin-left: 0;
   margin-right: 0;
-  font-size: 1.4em;
-  font-family: Open Sans;
+  font-size: 1.25rem;
+  font-family: "Roboto";
   font-style: italic;
   color: var(--text-blockquote);
-  padding: 1.2em 30px 1.2em 75px;
+  padding: 1rem 2rem 1rem 4rem;
   line-height: 1.5;
   background: var(--bg-aside);
 }
