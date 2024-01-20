@@ -35,7 +35,7 @@ module.exports = function (app, opts) {
         currentPage: page,
         totalPages,
         docTitle: 'Sercan Ateş',
-        docDescription: 'Personal web logs about programming, technology and life.',
+        docDescription: 'The blog posts I write to accelerate and monitor my personal development in programming, computer sciences and life.',
         authorized: authorized,
       });
     } catch (error) {
