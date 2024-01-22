@@ -20,7 +20,7 @@ block meta
 
 block content
   main.main
-    section(style=`height: ${authorized ? posts.length * 3 : posts.filter(post => post.isVisible === true).length * 3}rem;`).posts
+    section.posts(style=`height: ${authorized ? posts.length * 3 : posts.filter(post => post.isVisible === true).length * 3}rem;`)
       .postcard__date-list
         each post, index in posts
           if post.isVisible || authorized
