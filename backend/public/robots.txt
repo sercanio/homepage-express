@@ -1,4 +1,9 @@
 User-agent: *
-Disallow:
+
+Allow: /
+
+Disallow: /auth
+Disallow: /post/add
+Disallow: /post/edit
 
 Sitemap: https://sercan.io/sitemap.xml
