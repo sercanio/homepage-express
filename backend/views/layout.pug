@@ -11,9 +11,9 @@ html(lang="en")
   body
     header.site-header
       nav.site-nav
-        a(href='/' title="Home" role="navigation" aria-label="Home page").site-logo sercan.io
+        a(href='/' title="Home" aria-label="sercan.io").site-logo sercan.io
         .site-nav__navlinks
-          a(href='/me' title="About Me" role="navigation" aria-label="About me").nav-link me -
+          a(href='/me' title="About Me" aria-label="me").nav-link me
           if authorized
             a(href='/post/add' title="Add New Post" role="navigation" aria-label="Add Post").nav-link add post -
             a(href='/auth/logout' title="Logout" role="navigation" aria-label="Logout").nav-link logout
