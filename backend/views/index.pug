@@ -32,17 +32,17 @@ block content
             div.postcard
               div.postcard__body
                 h2.postcard__title
-                  a(href=`/post/${post.slug}` title=`Click to Read` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
-                  a(title='Click to Change Visibility' aria-label='Click to Change Visibility' role='button'
+                  a(href=`/post/${post.slug}` title=`${post.title}` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
+                  a(title='Change Visibility' aria-label='Change Visibility' role='button'
                   onclick=`confirmChangeVisibility("${post._id}")`).delete-button #{post.isVisible ? ' - active' : ' - passive'}
-                  a(href=`/post/edit/${post._id}` title=`Click to Edit` aria-label=`Click to Edit` role="button").edit-button  - edit
-                  a(title=`Click to Delete` aria-label=`Click to Delete` role="button" onclick=`confirmDelete("${post._id}")`).delete-button  - x
+                  a(href=`/post/edit/${post._id}` title=`Edit` role="button").edit-button  - edit
+                  a(title=`Delete` role="button" onclick=`confirmDelete("${post._id}")`).delete-button  - x
                   span.postcard__title__date= `${post.date.toLowerCase()}`
           else if post.isVisible
             div.postcard
               div.postcard__body
                 h2.postcard__title
-                  a(href=`/post/${post.slug}` title=`Click to Read` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
+                  a(href=`/post/${post.slug}` title=`${post.title}` aria-label=`Published on ${post.date}, ${post.title}`)= post.title
     if totalPages > 1
       .pagination
         each page in Array(totalPages).fill().map((_, index) => index + 1)
