@@ -70,7 +70,7 @@ module.exports = async function main(options, cb) {
         directives: {
           "default-src": ["'self'"],
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'unsafe-inline'", "'self'","cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com","localhost"],
+          "script-src": ["'unsafe-inline'", "'self'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com", "localhost"],
           "script-src-attr": ["'unsafe-inline'", "'self'"],
           "style-src": ["'unsafe-inline'", "'self'", "cdn.jsdelivr.net", "fonts.googleapis.com", "gstatic.com"],
         },
@@ -91,8 +91,8 @@ module.exports = async function main(options, cb) {
   app.set('view engine', 'pug');
 
   // Session middleware
-   app.set('trust proxy', true)
-   app.use(
+  app.set('trust proxy', true)
+  app.use(
     session({
       secret: process.env.SESSION_SECRET,
       resave: false,
@@ -102,7 +102,7 @@ module.exports = async function main(options, cb) {
         maxAge: +process.env.SESSION_COOKIE_MAXAGE,
         secure: process.env.NODE_ENV === 'production', // Set to true if your app is served over HTTPS
         httpOnly: true,
-	      sameSite: 'strict',
+        sameSite: 'strict',
       },
     }),
   );
@@ -126,15 +126,15 @@ module.exports = async function main(options, cb) {
 
   // Common error handlers
   app.use(function fourOhFourHandler(req, res, next) {
-    next(httpErrors(404, `Route not found: ${req.url}`));
+    next(httpErrors(404, `Page not found`));
   });
   app.use(function fiveHundredHandler(err, req, res, next) {
     if (err.status >= 500) {
       logger.error(err);
     }
-    res.locals.name = 'My Personal Blog Page';
+    res.locals.name = err.status;
     res.locals.error = err;
-    res.status(err.status || 500).render('error');
+    res.status(err.status || 500).render('error', { message: err.message });
   });
 
   // Start server

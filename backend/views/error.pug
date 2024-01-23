@@ -1,7 +1,7 @@
-doctype html
-html
-  head
-    title= name
-  body
+extends layout.pug
+block meta
+  title= name
+block content
+  main.main
     h1= error.status || error.code
     p= message

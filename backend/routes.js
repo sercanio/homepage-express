@@ -4,6 +4,7 @@ const PostModel = require('./models/Post');
 const UserModel = require('./models/User');
 const slugify = require('./src/lib/slugify');
 const bcrypt = require('bcrypt');
+const httpErrors = require('http-errors');
 const generateSitemapXML = require('./middlewares/sitemap-middleware');
 
 module.exports = function (app, opts) {
@@ -179,10 +180,15 @@ module.exports = function (app, opts) {
     }
   });
 
-  app.get('/post/:slug', async (req, res) => {
+  app.get('/post/:slug', async (req, res, next) => {
     try {
       const authorized = req.session.authorized;
       const postInDB = await PostModel.findOne({ slug: req.params.slug });
+
+      if (!postInDB || (!authorized && !postInDB.isVisible)) {
+        return next(httpErrors(404, `Blog post not found`));
+      }
+
       const post = {
         ...postInDB.toObject(),
         date: postInDB.date.toLocaleDateString('en-US', {
@@ -191,16 +197,6 @@ module.exports = function (app, opts) {
           day: 'numeric',
         }),
       };
-
-      if (!post) {
-        res.status(404).send('Post not found');
-        return;
-      }
-
-      if (!authorized && !post.isVisible) {
-        res.status(401).render('error', { error: { status: "404", code: "404" }, message: "Blog post is not found" });
-        return;
-      }
 
       res.render('post', {
         docTitle: post.title,
@@ -214,7 +210,7 @@ module.exports = function (app, opts) {
       });
     } catch (error) {
       console.error(error);
-      res.status(500).send('Internal Server Error');
+      return next(httpErrors(500, `Internal Server Error`));
     }
   });
 
