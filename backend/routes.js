@@ -362,7 +362,7 @@ module.exports = function (app, opts) {
     });
   });
 
-  app.get('/assets/:postslug/:filename', async(req, res) => {
+  app.get('/assets/posts/:postslug/:filename', async(req, res) => {
     try {
       const postslug = req.params.postslug;
       const filename = req.params.filename;
