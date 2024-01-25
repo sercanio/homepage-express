@@ -19,7 +19,7 @@ module.exports = function (app, opts) {
   });
 
   app.get('/', async (req, res, next) => {
-    const postsPerPage = 10;
+    const postsPerPage = 15;
     const authorized = req.session.authorized || false;
     try {
       const page = parseInt(req.query.page) || 1;
