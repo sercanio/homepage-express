@@ -7,8 +7,17 @@ const bcrypt = require('bcrypt');
 const httpErrors = require('http-errors');
 const axios = require('axios');
 const generateSitemapXML = require('./middlewares/sitemap-middleware');
+const aws = require('aws-sdk');
+
 
 module.exports = function (app, opts) {
+  // S3 Object Properties
+  const s3 = new aws.S3({
+    accessKeyId: opts.awsAccessKeyId,
+    secretAccessKey: opts.awsSecretKey,
+    region: opts.awsRegion,
+  });
+
   app.get('/', async (req, res, next) => {
     const postsPerPage = 10;
     const authorized = req.session.authorized || false;
@@ -362,29 +371,31 @@ module.exports = function (app, opts) {
     });
   });
 
-  app.get('/assets/posts/:postslug/:filename', async(req, res) => {
+  app.get('/assets/posts/:postslug/:filename', async (req, res) => {
     try {
       const postslug = req.params.postslug;
       const filename = req.params.filename;
 
       // Construct the AWS S3 URL
-      const awsS3Url = `https://s3.eu-central-1.amazonaws.com/sercan.io/assets/post_assets/${postslug}/${filename}`;
+      const s3Params = {
+        Bucket: 'sercan.io', // Change to your bucket name
+        Key: `assets/post_assets/${postslug}/${filename}`,
+      };
 
       // Fetch the image from AWS S3
-      const response = await axios.get(awsS3Url, { responseType: 'arraybuffer' });
+      const response = await s3.getObject(s3Params).promise();
 
       // Set the appropriate content type based on the file extension
-      const contentType = response.headers['content-type'];
+      const contentType = response.ContentType;
       res.set('Content-Type', contentType);
 
       // Send the image data to the client
-      res.send(response.data);
+      res.send(response.Body);
     } catch (error) {
-      console.error(error);
+      console.error('Error:', error);
       res.status(500).send('Internal Server Error');
     }
   });
-
 
   app.get('/sitemap.xml', generateSitemapXML, async (req, res, next) => {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');

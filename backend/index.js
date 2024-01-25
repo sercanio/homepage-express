@@ -17,6 +17,9 @@ module.exports = async function main(options, cb) {
   const opts = Object.assign(
     {
       // Default options
+      awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      awsSecretKey: process.env.AWS_SECRET_KEY,
+      awsRegion: process.env.AWS_REGION
     },
     options
   );
