@@ -9,7 +9,7 @@ const axios = require('axios');
 const generateSitemapXML = require('./middlewares/sitemap-middleware');
 const aws = require('aws-sdk');
 
-
+// TODO: Refactor this code, make more configurable
 module.exports = function (app, opts) {
   // S3 Object Properties
   const s3 = new aws.S3({
