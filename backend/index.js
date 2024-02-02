@@ -73,8 +73,9 @@ module.exports = async function main(options, cb) {
         directives: {
           "default-src": ["'self'"],
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com", "https://www.googletagmanager.com", "*.googletagmanager.com", "localhost"],
+          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com", "googletagmanager.com", "*.googletagmanager.com", "localhost"],
           "script-src-attr": ["'unsafe-inline'", "'self'"],
+          "connect-src": ["'self'", "https://www.google-analytics.com"],
           "style-src": ["'unsafe-inline'", "'self'", "cdn.jsdelivr.net", "fonts.googleapis.com", "gstatic.com"],
         },
       },
