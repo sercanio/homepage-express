@@ -1,6 +1,13 @@
 doctype html
 html(lang="en")
   head
+    // Google tag (gtag.js)
+    script(async, src="https://www.googletagmanager.com/gtag/js?id=G-9Q15CYH0JW")
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9Q15CYH0JW');
     title= docTitle
     meta(name="description" content=`${docDescription}`)
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
