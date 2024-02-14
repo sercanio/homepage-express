@@ -10,6 +10,8 @@ const generateSitemapXML = require('./middlewares/sitemap-middleware');
 const aws = require('aws-sdk');
 
 // TODO: Refactor this code, make more configurable
+// TODO: Create different services for file storage, backup and authenticantion to make code scalable
+// TODO: Create test
 module.exports = function (app, opts) {
   // S3 Object Properties
   const s3 = new aws.S3({
