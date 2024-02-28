@@ -373,8 +373,9 @@ module.exports = function (app, opts) {
 
   app.get('/assets/posts/:postslug/:filename', async (req, res) => {
     try {
-      const postslug = req.params.postslug;
-      const filename = req.params.filename;
+      // Extract and trim postslug and filename
+      const postslug = req.params.postslug.trim();
+      const filename = req.params.filename.trim();
 
       // Construct the AWS S3 URL
       const s3Params = {
