@@ -8,6 +8,7 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+      - ./data/mongo/001_users.js:/docker-entrypoint-initdb.d/001_users.js:ro
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
