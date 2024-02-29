@@ -3,7 +3,7 @@
 backend/node_modules
 backend/public/*.xml
 certbot
-
+data/
 # Logs
 logs
 *.log
