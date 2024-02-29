@@ -66,20 +66,20 @@ module.exports = async function main(options, cb) {
   // Create the express app
   const app = express();
 
-  // app.use(helmet())
   app.use(
     helmet({
       contentSecurityPolicy: {
         directives: {
           "default-src": ["'self'"],
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com"],
-          "script-src-attr": ["'unsafe-inline'", "'self'"],
-          "style-src": ["'unsafe-inline'", "'self'", "cdn.jsdelivr.net", "fonts.googleapis.com", "gstatic.com"],
+          "script-src": ["'self'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com"],
+          "script-src-attr": ["'self'"],
+          "style-src": ["'self'", "cdn.jsdelivr.net", "fonts.googleapis.com", "gstatic.com"],
         },
       },
-    }),
+    })
   );
+
   app.use(express.urlencoded({ extended: true }));
 
   // parse json response

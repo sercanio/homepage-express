@@ -9,9 +9,6 @@ const axios = require('axios');
 const generateSitemapXML = require('./middlewares/sitemap-middleware');
 const aws = require('aws-sdk');
 
-// TODO: Refactor this code, make more configurable
-// TODO: Create different services for file storage, backup and authenticantion to make code scalable
-// TODO: Create test
 module.exports = function (app, opts) {
   // S3 Object Properties
   const s3 = new aws.S3({
@@ -49,7 +46,7 @@ module.exports = function (app, opts) {
         totalPages,
         docTitle: 'Sercan Ateş',
         docDescription: 'The blog posts I write to accelerate and monitor my personal development in programming, computer sciences and life.',
-        authorized: authorized,
+        authorized: authorized
       });
     } catch (error) {
       console.error(error);
