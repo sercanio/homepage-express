@@ -20,8 +20,14 @@ db.createUser(
 
 - To run container stack:
 
+bash:
 ```bash
-docker compose --env-file .\backend\.env  up
+docker compose --env-file ./backend/.env up --build
+```
+
+powershell:
+```powershell
+docker compose --env-file .\backend\.env up --build
 ```
 
 - Environment Variables for .env file
