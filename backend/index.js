@@ -72,8 +72,8 @@ module.exports = async function main(options, cb) {
         directives: {
           "default-src": ["'self'"],
           "img-src": ["'self'", "s3.eu-central-1.amazonaws.com/sercan.io/"],
-          "script-src": ["'self'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com"],
-          "script-src-attr": ["'self'"],
+          "script-src": ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net", "cdn.tiny.cloud", "cdnjs.cloudflare.com"],
+          "script-src-attr": ["'self'", "'unsafe-inline'"],
           "style-src": ["'self'", "cdn.jsdelivr.net", "fonts.googleapis.com", "gstatic.com"],
         },
       },
