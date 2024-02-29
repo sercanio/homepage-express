@@ -14,7 +14,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
     env_file:
-      - ./backend/.env
+      - backend/.env
 
   backend:
     build: ./backend
